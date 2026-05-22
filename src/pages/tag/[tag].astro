@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+export async function getStaticPaths() {
+  const dicas = await getCollection('dicas');
+
+  function slugifyTag(tag: string): string {
+    return tag
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '-');
+  }
+
+  // Coleta todas as tags únicas
+  const todasTags = new Set<string>();
+  dicas.forEach(dica => {
+    dica.data.tags?.forEach(tag => todasTags.add(tag));
+  });
+
+  // Gera uma rota pra cada tag
+  return Array.from(todasTags).map(tag => ({
+    params: { tag: slugifyTag(tag) },
+    props: { tag, tagOriginal: tag },
+  }));
+}
+
+const { tag, tagOriginal } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const todasDicas = await getCollection('dicas');
+
+const dicas = todasDicas
+  .filter(dica =>
+    dica.data.tags?.some(t => t.toLowerCase() === tagOriginal.toLowerCase())
+  )
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+function metaDoCard(dica: typeof dicas[0]): string {
+  const d = dica.data;
+  if (d.localizacao) return d.localizacao;
+  if (d.info?.ano) return d.info.ano;
+  if (d.info?.idioma && d.info?.frequencia) return `${d.info.idioma} · ${d.info.frequencia}`;
+  if (d.info?.onde_assistir) return d.info.onde_assistir;
+  return '';
+}
+---
+<Layout titulo={`Tag: ${tagOriginal}`} descricao={`Dicas com a tag ${tagOriginal}`}>
+  <div class="container">
+    <section class="preambulo">
+      <div class="preambulo-eyebrow">Tag</div>
+      <h1 class="preambulo-titulo">#{tagOriginal}</h1>
+      <p class="preambulo-texto">
+        {dicas.length} {dicas.length === 1 ? 'dica' : 'dicas'} com essa tag.
+      </p>
+      <p class="preambulo-manifesto">
+        <a href={base} style="color: var(--oxy-orange); text-decoration: none;">← Voltar para todas as dicas</a>
+      </p>
+    </section>
+  </div>
+
+  <div class="container">
+    {dicas.length > 0 && (
+      <div class="filtros-wrap">
+        <div class="cards-grid">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</Layout>

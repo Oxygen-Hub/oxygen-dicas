@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Filtros from '../../components/Filtros.astro';
+import Card from '../../components/Card.astro';
+
+export async function getStaticPaths() {
+  const categorias = ['Viagens', 'Restaurantes', 'Livros', 'Eventos', 'Filmes & Séries', 'Podcasts'];
+
+  function slugify(cat: string): string {
+    return cat
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+&\s+/g, '-e-')
+      .replace(/\s+/g, '-');
+  }
+
+  return categorias.map(cat => ({
+    params: { categoria: slugify(cat) },
+    props: { categoria: cat },
+  }));
+}
+
+const { categoria } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const todasDicas = await getCollection('dicas');
+
+// Filtra: categoria principal OU tag com nome igual (case-insensitive)
+const dicas = todasDicas
+  .filter(dica => {
+    const ehCategoriaPrincipal = dica.data.categoria === categoria;
+    const temTag = dica.data.tags?.some(
+      tag => tag.toLowerCase() === categoria.toLowerCase()
+    );
+    return ehCategoriaPrincipal || temTag;
+  })
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+function metaDoCard(dica: typeof dicas[0]): string {
+  const d = dica.data;
+  if (d.localizacao) return d.localizacao;
+  if (d.info?.ano) return d.info.ano;
+  if (d.info?.idioma && d.info?.frequencia) return `${d.info.idioma} · ${d.info.frequencia}`;
+  if (d.info?.onde_assistir) return d.info.onde_assistir;
+  return '';
+}
+---
+<Layout titulo={categoria} descricao={`Dicas da categoria ${categoria} da comunidade Oxygen Club`}>
+  <div class="container">
+    <section class="preambulo">
+      <div class="preambulo-eyebrow">Categoria</div>
+      <h1 class="preambulo-titulo">{categoria}</h1>
+      <p class="preambulo-texto">
+        {dicas.length === 0
+          ? `Ainda não temos dicas em ${categoria.toLowerCase()}. Volte em breve!`
+          : `${dicas.length} ${dicas.length === 1 ? 'dica' : 'dicas'} da comunidade.`
+        }
+      </p>
+    </section>
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      <Filtros ativo={categoria} base={base} />
+
+      {dicas.length > 0 && (
+        <div class="cards-grid">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

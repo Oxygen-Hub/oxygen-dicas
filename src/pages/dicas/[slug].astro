@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import InfoBlock from '../../components/InfoBlock.astro';
+
+export async function getStaticPaths() {
+  const dicas = await getCollection('dicas');
+  return dicas.map(dica => ({
+    params: { slug: dica.slug },
+    props: { dica },
+  }));
+}
+
+const { dica } = Astro.props;
+const { Content } = await dica.render();
+const d = dica.data;
+const base = import.meta.env.BASE_URL;
+
+// Slug pra link da categoria
+function slugify(cat: string): string {
+  return cat
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+&\s+/g, '-e-')
+    .replace(/\s+/g, '-');
+}
+
+function slugifyTag(tag: string): string {
+  return tag
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-');
+}
+
+const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(d.publicado_em);
+---
+<Layout titulo={d.titulo} descricao={d.subtitulo || `Dica de ${d.categoria.toLowerCase()} da comunidade Oxygen Club`}>
+  <article class="container-narrow detalhe-wrap">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href={base}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Todas as dicas
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={`${base}/categoria/${slugify(d.categoria)}`}>{d.categoria}</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{d.titulo}</span>
+    </nav>
+
+    <!-- Meta (categoria + localização) -->
+    <div class="detalhe-meta">
+      <span class="detalhe-categoria">{d.categoria}</span>
+      {d.localizacao && <span class="detalhe-localizacao">{d.localizacao}</span>}
+    </div>
+
+    <!-- Título -->
+    <h1 class="detalhe-titulo">{d.titulo}</h1>
+
+    <!-- Subtítulo -->
+    {d.subtitulo && <p class="detalhe-subtitulo">{d.subtitulo}</p>}
+
+    <div class="detalhe-divider"></div>
+
+    <!-- Corpo da dica (Markdown) -->
+    <div class="detalhe-corpo">
+      <Content />
+    </div>
+
+    <!-- Bloco de info estruturada -->
+    <InfoBlock info={d.info} categoria={d.categoria} />
+
+    <!-- Tags -->
+    {d.tags && d.tags.length > 0 && (
+      <div class="detalhe-tags">
+        {d.tags.map(tag => (
+          <a href={`${base}/tag/${slugifyTag(tag)}`} class="detalhe-tag">
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+
+    <!-- Footer da dica -->
+    <div class="detalhe-footer">
+      <span>Indicação da comunidade Oxygen</span>
+      <span>Adicionada em {dataFormatada}</span>
+    </div>
+
+  </article>
+</Layout>

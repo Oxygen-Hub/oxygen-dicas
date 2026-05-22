@@ -1,0 +1,103 @@
+---
+interface Info {
+  endereco?: string;
+  horario?: string;
+  site?: string;
+  reservas?: string;
+  autor?: string;
+  editora?: string;
+  ano?: string;
+  onde_comprar?: string;
+  data?: string;
+  ingresso?: string;
+  onde_assistir?: string;
+  duracao?: string;
+  idioma?: string;
+  frequencia?: string;
+  plataforma?: string;
+}
+
+interface Props {
+  info?: Info;
+  categoria: string;
+}
+
+const { info, categoria } = Astro.props;
+
+if (!info) return null;
+
+// Mapeamento de campos por categoria, na ordem em que aparecem
+const camposPorCategoria: Record<string, Array<{ chave: keyof Info; label: string; eh_link?: boolean }>> = {
+  'Restaurantes': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'horario', label: 'Horário' },
+    { chave: 'site', label: 'Site', eh_link: true },
+    { chave: 'reservas', label: 'Reservas' },
+  ],
+  'Viagens': [
+    { chave: 'endereco', label: 'Local' },
+    { chave: 'horario', label: 'Horário' },
+    { chave: 'site', label: 'Site', eh_link: true },
+    { chave: 'reservas', label: 'Reservas' },
+  ],
+  'Livros': [
+    { chave: 'autor', label: 'Autor' },
+    { chave: 'editora', label: 'Editora' },
+    { chave: 'ano', label: 'Ano' },
+    { chave: 'onde_comprar', label: 'Onde comprar', eh_link: true },
+  ],
+  'Eventos': [
+    { chave: 'endereco', label: 'Local' },
+    { chave: 'data', label: 'Data' },
+    { chave: 'ingresso', label: 'Ingresso', eh_link: true },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+  'Filmes & Séries': [
+    { chave: 'onde_assistir', label: 'Onde assistir' },
+    { chave: 'ano', label: 'Ano' },
+    { chave: 'duracao', label: 'Duração' },
+    { chave: 'site', label: 'Mais info', eh_link: true },
+  ],
+  'Podcasts': [
+    { chave: 'idioma', label: 'Idioma' },
+    { chave: 'frequencia', label: 'Frequência' },
+    { chave: 'plataforma', label: 'Plataforma' },
+    { chave: 'site', label: 'Link', eh_link: true },
+  ],
+};
+
+const campos = camposPorCategoria[categoria] || [];
+const camposPreenchidos = campos.filter(c => info[c.chave]);
+
+if (camposPreenchidos.length === 0) return null;
+
+// Verifica se é URL (pra abrir com target=_blank)
+function ehUrl(valor: string): boolean {
+  return valor.startsWith('http://') || valor.startsWith('https://') || valor.includes('.com') || valor.includes('.br') || valor.includes('.pt');
+}
+
+function formatarLink(valor: string): string {
+  if (valor.startsWith('http://') || valor.startsWith('https://')) return valor;
+  return `https://${valor}`;
+}
+---
+{camposPreenchidos.length > 0 && (
+  <div class="detalhe-info">
+    <div class="detalhe-info-grid">
+      {camposPreenchidos.map(campo => (
+        <div class="detalhe-info-item">
+          <div class="detalhe-info-label">{campo.label}</div>
+          <div class="detalhe-info-value">
+            {campo.eh_link && info[campo.chave] && ehUrl(info[campo.chave]!) ? (
+              <a href={formatarLink(info[campo.chave]!)} target="_blank" rel="noopener noreferrer">
+                {info[campo.chave]!.replace(/^https?:\/\//, '')} ↗
+              </a>
+            ) : (
+              <span>{info[campo.chave]}</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}

@@ -1,0 +1,40 @@
+---
+interface Props {
+  ativo?: string; // categoria ativa
+  base: string;
+}
+
+const { ativo = 'Todas', base } = Astro.props;
+
+const categorias = [
+  'Todas',
+  'Viagens',
+  'Restaurantes',
+  'Livros',
+  'Eventos',
+  'Filmes & Séries',
+  'Podcasts'
+];
+
+// Converte nome da categoria em slug pra URL
+function slugify(cat: string): string {
+  return cat
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+&\s+/g, '-e-')
+    .replace(/\s+/g, '-');
+}
+---
+<div class="filtros">
+  {categorias.map(cat => {
+    const ehTodas = cat === 'Todas';
+    const href = ehTodas ? base : `${base}/categoria/${slugify(cat)}`;
+    const isActive = cat === ativo;
+    return (
+      <a href={href} class={`filtro ${isActive ? 'is-active' : ''}`}>
+        {cat}
+      </a>
+    );
+  })}
+</div>

@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descricao?: string;
+}
+
+const { titulo, descricao = 'Dicas da comunidade Oxygen Club. Restaurantes, livros, viagens, eventos e mais — curadoria 100% humana.' } = Astro.props;
+
+const tituloFinal = titulo === 'Dicas' ? 'Dicas · Oxygen Club' : `${titulo} · Dicas Oxygen Club`;
+
+// Base URL pra funcionar tanto em dev quanto no GitHub Pages
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{tituloFinal}</title>
+  <meta name="description" content={descricao} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={tituloFinal} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href={`${base}/images/logo-oxygen-club.png`} />
+
+  <!-- Manrope do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header-inner">
+        <a href={base} class="site-logo">
+          <img src={`${base}/images/logo-oxygen-club.png`} alt="Oxygen Club" />
+          <span class="site-logo-sub">Dicas</span>
+        </a>
+
+        <label class="site-search" for="busca">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            id="busca"
+            type="search"
+            placeholder="Buscar uma dica"
+            autocomplete="off"
+          />
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Feito com cuidado pela comunidade <a href="https://oxygenhub.com.br" target="_blank" rel="noopener">Oxygen Club</a></p>
+    </div>
+  </footer>
+
+  <!-- Busca client-side (simples, filtra cards visíveis na home) -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('busca');
+      if (!input) return;
+
+      input.addEventListener('input', (e) => {
+        const termo = e.target.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.card');
+        let visiveis = 0;
+
+        cards.forEach(card => {
+          const texto = card.textContent.toLowerCase();
+          const visivel = !termo || texto.includes(termo);
+          card.style.display = visivel ? '' : 'none';
+          if (visivel) visiveis++;
+        });
+
+        // Mostrar mensagem de "sem resultados" se nenhum card visível
+        const grid = document.querySelector('.cards-grid');
+        let empty = document.querySelector('.empty-busca');
+        if (visiveis === 0 && termo && grid) {
+          if (!empty) {
+            empty = document.createElement('div');
+            empty.className = 'empty empty-busca';
+            empty.textContent = 'Nenhuma dica encontrada. Tente outro termo.';
+            grid.after(empty);
+          }
+        } else if (empty) {
+          empty.remove();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

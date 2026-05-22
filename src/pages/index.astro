@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Preambulo from '../components/Preambulo.astro';
+import Filtros from '../components/Filtros.astro';
+import Card from '../components/Card.astro';
+
+const base = import.meta.env.BASE_URL;
+
+// Pega todas as dicas e ordena por data (mais recentes primeiro)
+const dicas = (await getCollection('dicas'))
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+// Helper pra montar a "meta" do card baseado na categoria
+function metaDoCard(dica: typeof dicas[0]): string {
+  const d = dica.data;
+  if (d.localizacao) return d.localizacao;
+  if (d.info?.ano) return d.info.ano;
+  if (d.info?.idioma && d.info?.frequencia) return `${d.info.idioma} · ${d.info.frequencia}`;
+  if (d.info?.onde_assistir) return d.info.onde_assistir;
+  return '';
+}
+---
+<Layout titulo="Dicas">
+  <div class="container">
+    <Preambulo />
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      <h2 class="filtros-titulo">Adicionadas recentemente</h2>
+      <Filtros ativo="Todas" base={base} />
+
+      {dicas.length === 0 ? (
+        <div class="empty">Ainda não há dicas por aqui. Em breve!</div>
+      ) : (
+        <div class="cards-grid">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

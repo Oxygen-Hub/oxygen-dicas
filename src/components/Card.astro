@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  categoria: string;
+  titulo: string;
+  descricao: string;
+  meta?: string; // localização ou outra info contextual
+}
+
+const { href, categoria, titulo, descricao, meta } = Astro.props;
+---
+<a href={href} class="card">
+  <div class="card-top">
+    <div>
+      {meta && <div class="card-meta">{meta}</div>}
+      <div class="card-titulo">{titulo}</div>
+    </div>
+    <span class="card-tag">{categoria}</span>
+  </div>
+  <div class="card-descricao">{descricao}</div>
+</a>
