@@ -1,15 +1,16 @@
 ---
 titulo: "The Ezra Klein Show"
 subtitulo: "Entrevistas longas e bem feitas sobre política, cultura e tecnologia."
-categoria: "Podcasts"
+categoria: "Content+"
+subcategoria: "Podcast"
+subtag: "Inglês"
 tags:
   - "política"
   - "tecnologia"
   - "ideias"
 info:
-  idioma: "Inglês"
-  frequencia: "Semanal"
   plataforma: "Spotify, Apple Podcasts, NYT"
+  frequencia: "Semanal"
   site: "nytimes.com/podcasts/ezra-klein-show"
 publicado_em: 2026-05-15
 ---
