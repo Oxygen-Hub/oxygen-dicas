@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import InfoBlock from '../../components/InfoBlock.astro';
+import { slugify, categoriaSlug } from '../../utils/helpers';
+
+export async function getStaticPaths() {
+  const dicas = await getCollection('dicas');
+  return dicas.map(dica => ({
+    params: { slug: dica.slug },
+    props: { dica },
+  }));
+}
+
+const { dica } = Astro.props;
+const { Content } = await dica.render();
+const d = dica.data;
+const base = import.meta.env.BASE_URL;
+
+const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(d.publicado_em);
+
+// Link da subcategoria depende da categoria principal
+const catSlug = categoriaSlug(d.categoria);
+const subSlug = slugify(d.subcategoria);
+const subLink = `${base}/${catSlug}/${subSlug}`;
+---
+<Layout titulo={d.titulo} descricao={d.subtitulo || `Dica de ${d.subcategoria.toLowerCase()} da comunidade Oxygen Club`}>
+  <article class="container-narrow detalhe-wrap">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href={base}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Início
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={`${base}/${catSlug}`}>{d.categoria}</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={subLink}>{d.subcategoria}</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{d.titulo}</span>
+    </nav>
+
+    <!-- Meta (subcategoria + localização ou subtag) -->
+    <div class="detalhe-meta">
+      <span class="detalhe-categoria">{d.subcategoria}</span>
+      {(d.cidade || d.pais) && (
+        <span class="detalhe-localizacao">
+          {d.cidade && d.pais ? `${d.cidade}, ${d.pais}` : d.cidade || d.pais}
+        </span>
+      )}
+      {d.subtag && !d.cidade && !d.pais && (
+        <span class="detalhe-localizacao">{d.subtag}</span>
+      )}
+    </div>
+
+    <!-- Título -->
+    <h1 class="detalhe-titulo">{d.titulo}</h1>
+
+    {d.subtitulo && <p class="detalhe-subtitulo">{d.subtitulo}</p>}
+
+    <div class="detalhe-divider"></div>
+
+    <!-- Corpo da dica (Markdown) -->
+    <div class="detalhe-corpo">
+      <Content />
+    </div>
+
+    <!-- Bloco de info estruturada -->
+    <InfoBlock info={d.info} subcategoria={d.subcategoria} />
+
+    <!-- Footer da dica -->
+    <div class="detalhe-footer">
+      <span>Indicação da comunidade Oxygen</span>
+      <span>Adicionada em {dataFormatada}</span>
+    </div>
+
+  </article>
+</Layout>

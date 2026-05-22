@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+import { slugify, metaDoCard } from '../../utils/helpers';
+
+const base = import.meta.env.BASE_URL;
+
+const dicas = (await getCollection('dicas'))
+  .filter(d => d.data.categoria === 'Gerais')
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets'].map(s => ({
+  nome: s,
+  slug: slugify(s),
+  count: dicas.filter(d => d.data.subcategoria === s).length
+}));
+---
+<Layout titulo="Gerais">
+  <div class="container">
+    <section class="preambulo">
+      <div class="preambulo-eyebrow">Gerais</div>
+      <h1 class="preambulo-titulo">Indicações do dia a dia.</h1>
+      <p class="preambulo-texto">
+        {dicas.length === 0
+          ? 'Ainda não temos indicações. Volte em breve!'
+          : `${dicas.length} ${dicas.length === 1 ? 'indicação' : 'indicações'} da comunidade.`}
+      </p>
+    </section>
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      <h2 class="filtros-titulo">Explorar por tipo</h2>
+      <div class="filtros">
+        <a href={`${base}/gerais`} class="filtro is-active">Todas</a>
+        {subcategorias.map(s => (
+          <a href={`${base}/gerais/${s.slug}`} class="filtro">
+            {s.nome}
+            {s.count > 0 && <span style="opacity:0.5; margin-left:6px; font-size: 11px;">{s.count}</span>}
+          </a>
+        ))}
+      </div>
+
+      {dicas.length > 0 && (
+        <div class="cards-grid">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              subcategoria={dica.data.subcategoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

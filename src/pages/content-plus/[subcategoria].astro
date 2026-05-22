@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+import { slugify, metaDoCard } from '../../utils/helpers';
+
+export async function getStaticPaths() {
+  const subs = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
+  return subs.map(s => ({
+    params: { subcategoria: slugify(s) },
+    props: { subcategoria: s },
+  }));
+}
+
+const { subcategoria } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const dicas = (await getCollection('dicas'))
+  .filter(d => d.data.categoria === 'Content+' && d.data.subcategoria === subcategoria)
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+// Subtags (3º nível)
+const subtagsSet = new Set<string>();
+dicas.forEach(d => { if (d.data.subtag) subtagsSet.add(d.data.subtag); });
+const subtags = Array.from(subtagsSet).sort().map(t => ({
+  nome: t,
+  slug: slugify(t),
+  count: dicas.filter(d => d.data.subtag === t).length
+}));
+
+const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
+---
+<Layout titulo={`Content+ · ${subcategoria}`}>
+  <div class="container">
+    <section class="preambulo">
+      <div class="preambulo-eyebrow">Content+ / {subcategoria}</div>
+      <h1 class="preambulo-titulo">{subcategoria}</h1>
+      <p class="preambulo-texto">
+        {dicas.length === 0
+          ? `Ainda não temos dicas de ${subcategoria.toLowerCase()}.`
+          : `${dicas.length} ${dicas.length === 1 ? 'dica' : 'dicas'} da comunidade.`}
+      </p>
+    </section>
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      <h2 class="filtros-titulo">Explorar por tipo</h2>
+      <div class="filtros">
+        <a href={`${base}/content-plus`} class="filtro">Todas</a>
+        {subcategorias.map(s => (
+          <a href={`${base}/content-plus/${slugify(s)}`} class={`filtro ${s === subcategoria ? 'is-active' : ''}`}>
+            {s}
+          </a>
+        ))}
+      </div>
+
+      {subtags.length > 0 && (
+        <>
+          <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--oxy-ink-muted); font-weight: 600; margin: 20px 0 12px;">Filtrar por estilo</div>
+          <div class="filtros">
+            <a href={`${base}/content-plus/${slugify(subcategoria)}`} class="filtro is-active">Todos</a>
+            {subtags.map(t => (
+              <a href={`${base}/content-plus/${slugify(subcategoria)}/${t.slug}`} class="filtro">
+                {t.nome}
+                <span style="opacity:0.5; margin-left:6px; font-size: 11px;">{t.count}</span>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {dicas.length > 0 && (
+        <div class="cards-grid" style="margin-top: 28px;">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              subcategoria={dica.data.subcategoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

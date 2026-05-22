@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Preambulo from '../components/Preambulo.astro';
+import Card from '../components/Card.astro';
+import { metaDoCard } from '../utils/helpers';
+
+const base = import.meta.env.BASE_URL;
+
+const dicas = (await getCollection('dicas'))
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+const categorias = [
+  { nome: 'Viagens', slug: 'viagens', descricao: 'Lugares pra ir, comer, ficar e descobrir.' },
+  { nome: 'Content+', slug: 'content-plus', descricao: 'Pra ouvir, ler, ver e maratonar.' },
+  { nome: 'IRL', slug: 'irl', descricao: 'Exposições, eventos e festivais pra viver de perto.' },
+  { nome: 'Gerais', slug: 'gerais', descricao: 'Indicações do dia a dia que valem ouro.' },
+].map(c => ({
+  ...c,
+  count: dicas.filter(d => d.data.categoria === c.nome).length
+}));
+---
+<Layout titulo="Dicas">
+  <div class="container">
+    <Preambulo />
+  </div>
+
+  <div class="container">
+    <div class="portoes portoes-4">
+      {categorias.map(cat => (
+        <a href={`${base}/${cat.slug}`} class="portao">
+          <div class="portao-titulo">{cat.nome}</div>
+          <div class="portao-desc">{cat.descricao}</div>
+          <div class="portao-bottom">
+            <span class="portao-count">{cat.count} {cat.count === 1 ? 'dica' : 'dicas'}</span>
+            <span class="portao-arrow">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      <h2 class="filtros-titulo">Adicionadas recentemente</h2>
+
+      {dicas.length === 0 ? (
+        <div class="empty">Ainda não há dicas por aqui. Em breve!</div>
+      ) : (
+        <div class="cards-grid">
+          {dicas.slice(0, 6).map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              subcategoria={dica.data.subcategoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

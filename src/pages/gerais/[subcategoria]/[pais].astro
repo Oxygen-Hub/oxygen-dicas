@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Card from '../../../components/Card.astro';
+import { slugify, metaDoCard } from '../../../utils/helpers';
+
+export async function getStaticPaths() {
+  const dicas = await getCollection('dicas');
+  const subs = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets'];
+
+  const paths: any[] = [];
+  for (const sub of subs) {
+    const paisesSet = new Set<string>();
+    dicas
+      .filter(d => d.data.categoria === 'Gerais' && d.data.subcategoria === sub && d.data.pais)
+      .forEach(d => paisesSet.add(d.data.pais!));
+
+    paisesSet.forEach(pais => {
+      paths.push({
+        params: { subcategoria: slugify(sub), pais: slugify(pais) },
+        props: { subcategoria: sub, pais }
+      });
+    });
+  }
+  return paths;
+}
+
+const { subcategoria, pais } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const dicas = (await getCollection('dicas'))
+  .filter(d =>
+    d.data.categoria === 'Gerais' &&
+    d.data.subcategoria === subcategoria &&
+    d.data.pais === pais
+  )
+  .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
+
+const cidadesSet = new Set<string>();
+dicas.forEach(d => { if (d.data.cidade) cidadesSet.add(d.data.cidade); });
+const cidades = Array.from(cidadesSet).sort().map(c => ({
+  nome: c,
+  slug: slugify(c),
+  count: dicas.filter(d => d.data.cidade === c).length
+}));
+---
+<Layout titulo={`Gerais · ${subcategoria} em ${pais}`}>
+  <div class="container">
+    <nav class="breadcrumb" style="padding-top: 30px;">
+      <a href={base}>Início</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={`${base}/gerais`}>Gerais</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={`${base}/gerais/${slugify(subcategoria)}`}>{subcategoria}</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{pais}</span>
+    </nav>
+
+    <section class="preambulo" style="padding-top: 30px;">
+      <div class="preambulo-eyebrow">{subcategoria} · {pais}</div>
+      <h1 class="preambulo-titulo">{subcategoria} em {pais}</h1>
+      <p class="preambulo-texto">{dicas.length} {dicas.length === 1 ? 'indicação' : 'indicações'} da comunidade.</p>
+    </section>
+  </div>
+
+  <div class="container">
+    <div class="filtros-wrap">
+      {cidades.length > 1 && (
+        <>
+          <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--oxy-ink-muted); font-weight: 600; margin: 0 0 12px;">Filtrar por cidade</div>
+          <div class="filtros">
+            <a href={`${base}/gerais/${slugify(subcategoria)}/${slugify(pais)}`} class="filtro is-active">Todas</a>
+            {cidades.map(c => (
+              <a href={`${base}/gerais/${slugify(subcategoria)}/${slugify(pais)}/${c.slug}`} class="filtro">
+                {c.nome}
+                <span style="opacity:0.5; margin-left:6px; font-size: 11px;">{c.count}</span>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {dicas.length > 0 && (
+        <div class="cards-grid" style="margin-top: 28px;">
+          {dicas.map(dica => (
+            <Card
+              href={`${base}/dicas/${dica.slug}`}
+              categoria={dica.data.categoria}
+              subcategoria={dica.data.subcategoria}
+              titulo={dica.data.titulo}
+              descricao={dica.data.subtitulo || ''}
+              meta={metaDoCard(dica)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

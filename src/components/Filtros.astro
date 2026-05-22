@@ -1,0 +1,26 @@
+---
+interface Props {
+  ativo?: string;
+  base: string;
+}
+
+const { ativo = 'Todas', base } = Astro.props;
+
+const categorias = [
+  { nome: 'Todas', slug: '' },
+  { nome: 'Viagens', slug: 'viagens' },
+  { nome: 'Content+', slug: 'content-plus' },
+  { nome: 'IRL', slug: 'irl' },
+];
+---
+<div class="filtros">
+  {categorias.map(cat => {
+    const href = cat.slug === '' ? base : `${base}/${cat.slug}`;
+    const isActive = cat.nome === ativo;
+    return (
+      <a href={href} class={`filtro ${isActive ? 'is-active' : ''}`}>
+        {cat.nome}
+      </a>
+    );
+  })}
+</div>

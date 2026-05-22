@@ -1,0 +1,171 @@
+---
+interface Info {
+  endereco?: string;
+  horario?: string;
+  site?: string;
+  reservas?: string;
+  autor?: string;
+  onde_assistir?: string;
+  duracao?: string;
+  temporadas?: string;
+  plataforma?: string;
+  frequencia?: string;
+  data?: string;
+  ingresso?: string;
+  local?: string;
+  nome_profissional?: string;
+  especialidade?: string;
+  contato?: string;
+  pagamento?: string;
+  faixa_preco?: string;
+}
+
+interface Props {
+  info?: Info;
+  subcategoria: string;
+}
+
+const { info, subcategoria } = Astro.props;
+
+const camposPorSubcategoria: Record<string, Array<{ chave: keyof Info; label: string; eh_link?: boolean }>> = {
+  // Viagens
+  'Restaurantes': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'horario', label: 'Horário' },
+    { chave: 'site', label: 'Site', eh_link: true },
+    { chave: 'reservas', label: 'Reservas' },
+  ],
+  'Hospedagem': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'site', label: 'Site', eh_link: true },
+    { chave: 'reservas', label: 'Reservas' },
+  ],
+  'Passeios': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'horario', label: 'Horário' },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+  'Lojas': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'horario', label: 'Horário' },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+  'Outros': [
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+  // Content+
+  'Livro': [
+    { chave: 'autor', label: 'Autor' },
+  ],
+  'Filme': [
+    { chave: 'onde_assistir', label: 'Onde assistir' },
+    { chave: 'duracao', label: 'Duração' },
+    { chave: 'site', label: 'Mais info', eh_link: true },
+  ],
+  'Série': [
+    { chave: 'onde_assistir', label: 'Onde assistir' },
+    { chave: 'temporadas', label: 'Temporadas' },
+    { chave: 'site', label: 'Mais info', eh_link: true },
+  ],
+  'Podcast': [
+    { chave: 'plataforma', label: 'Plataforma' },
+    { chave: 'frequencia', label: 'Frequência' },
+    { chave: 'site', label: 'Link', eh_link: true },
+  ],
+  'Documentário': [
+    { chave: 'onde_assistir', label: 'Onde assistir' },
+    { chave: 'duracao', label: 'Duração' },
+    { chave: 'site', label: 'Mais info', eh_link: true },
+  ],
+  // IRL
+  'Exposição': [
+    { chave: 'local', label: 'Local' },
+    { chave: 'data', label: 'Data' },
+    { chave: 'ingresso', label: 'Ingresso', eh_link: true },
+  ],
+  'Evento': [
+    { chave: 'local', label: 'Local' },
+    { chave: 'data', label: 'Data' },
+    { chave: 'ingresso', label: 'Ingresso', eh_link: true },
+  ],
+  'Festival': [
+    { chave: 'local', label: 'Local' },
+    { chave: 'data', label: 'Data' },
+    { chave: 'ingresso', label: 'Ingresso', eh_link: true },
+  ],
+  'Palestra': [
+    { chave: 'local', label: 'Local' },
+    { chave: 'data', label: 'Data' },
+    { chave: 'ingresso', label: 'Ingresso', eh_link: true },
+  ],
+  // Gerais
+  'Profissionais': [
+    { chave: 'nome_profissional', label: 'Nome' },
+    { chave: 'especialidade', label: 'Especialidade' },
+    { chave: 'contato', label: 'Contato' },
+    { chave: 'endereco', label: 'Endereço' },
+  ],
+  'Casa': [
+    { chave: 'nome_profissional', label: 'Nome' },
+    { chave: 'contato', label: 'Contato' },
+    { chave: 'pagamento', label: 'Forma de pagamento' },
+    { chave: 'faixa_preco', label: 'Faixa de preço' },
+  ],
+  'Beleza': [
+    { chave: 'nome_profissional', label: 'Nome' },
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'contato', label: 'Contato' },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+  'Compras': [
+    { chave: 'endereco', label: 'Onde comprar' },
+    { chave: 'site', label: 'Site', eh_link: true },
+    { chave: 'faixa_preco', label: 'Faixa de preço' },
+  ],
+  'Saúde': [
+    { chave: 'nome_profissional', label: 'Nome' },
+    { chave: 'especialidade', label: 'Especialidade' },
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'contato', label: 'Contato' },
+  ],
+  'Pets': [
+    { chave: 'nome_profissional', label: 'Nome' },
+    { chave: 'endereco', label: 'Endereço' },
+    { chave: 'contato', label: 'Contato' },
+    { chave: 'site', label: 'Site', eh_link: true },
+  ],
+};
+
+const campos = camposPorSubcategoria[subcategoria] || [];
+const camposPreenchidos = info ? campos.filter(c => info[c.chave]) : [];
+
+function ehUrl(valor: string): boolean {
+  return valor.startsWith('http://') || valor.startsWith('https://') || valor.includes('.com') || valor.includes('.br') || valor.includes('.pt');
+}
+
+function formatarLink(valor: string): string {
+  if (valor.startsWith('http://') || valor.startsWith('https://')) return valor;
+  return `https://${valor}`;
+}
+---
+{camposPreenchidos.length > 0 && info && (
+  <div class="detalhe-info">
+    <div class="detalhe-info-grid">
+      {camposPreenchidos.map(campo => (
+        <div class="detalhe-info-item">
+          <div class="detalhe-info-label">{campo.label}</div>
+          <div class="detalhe-info-value">
+            {campo.eh_link && info[campo.chave] && ehUrl(info[campo.chave]!) ? (
+              <a href={formatarLink(info[campo.chave]!)} target="_blank" rel="noopener noreferrer">
+                {info[campo.chave]!.replace(/^https?:\/\//, '')} ↗
+              </a>
+            ) : (
+              <span>{info[campo.chave]}</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
