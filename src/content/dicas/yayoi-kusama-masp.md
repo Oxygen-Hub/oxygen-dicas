@@ -1,17 +1,16 @@
 ---
 titulo: "Yayoi Kusama no MASP"
 subtitulo: "Retrospectiva da artista japonesa, com obras de toda a carreira."
-categoria: "Eventos"
-localizacao: "São Paulo, Brasil"
+categoria: "IRL"
+subcategoria: "Exposição"
+pais: "Brasil"
+cidade: "São Paulo"
 tags:
   - "arte"
-  - "exposição"
-  - "são paulo"
 info:
-  endereco: "MASP — Av. Paulista, 1578"
+  local: "MASP — Av. Paulista, 1578"
   data: "Até 27 de julho de 2026"
   ingresso: "masp.org.br"
-  site: "masp.org.br/exposicoes/yayoi-kusama"
 publicado_em: 2026-05-18
 ---
 
@@ -23,5 +22,3 @@ Dicas práticas:
 - **Vá pela manhã.** O ingresso é por horário, mas o museu fica menos cheio antes das 11h.
 - **Reserve umas 2 horas.** Tem muita coisa, vale ver com calma.
 - **Terça é gratuito** (mas ainda precisa retirar ingresso online com antecedência).
-
-Combina com almoço no [Petit Comité](#) ou no rooftop do próprio MASP.
