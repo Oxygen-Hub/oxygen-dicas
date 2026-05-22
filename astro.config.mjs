@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://contato.github.io',
+  site:  'https://contatooxygenhub.github.io',
   base: '/oxygen-dicas',
   output: 'static',
   trailingSlash: 'ignore',
