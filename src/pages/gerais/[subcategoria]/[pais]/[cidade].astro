@@ -3,23 +3,19 @@ import { getCollection } from 'astro:content';
 import Layout from '../../../../layouts/Layout.astro';
 import Card from '../../../../components/Card.astro';
 import { slugify, metaDoCard } from '../../../../utils/helpers';
-
 export async function getStaticPaths() {
   const dicas = await getCollection('dicas');
-  const subs = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets'];
-
+  const subs = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços'];
   const paths: any[] = [];
   for (const sub of subs) {
     const dicasSub = dicas.filter(d => d.data.categoria === 'Gerais' && d.data.subcategoria === sub);
     const paisesSet = new Set<string>();
     dicasSub.forEach(d => { if (d.data.pais) paisesSet.add(d.data.pais); });
-
     paisesSet.forEach(pais => {
       const cidadesSet = new Set<string>();
       dicasSub
         .filter(d => d.data.pais === pais && d.data.cidade)
         .forEach(d => cidadesSet.add(d.data.cidade!));
-
       cidadesSet.forEach(cidade => {
         paths.push({
           params: { subcategoria: slugify(sub), pais: slugify(pais), cidade: slugify(cidade) },
@@ -30,10 +26,8 @@ export async function getStaticPaths() {
   }
   return paths;
 }
-
 const { subcategoria, pais, cidade } = Astro.props;
 const base = import.meta.env.BASE_URL;
-
 const dicas = (await getCollection('dicas'))
   .filter(d =>
     d.data.categoria === 'Gerais' &&
@@ -56,14 +50,12 @@ const dicas = (await getCollection('dicas'))
       <span class="breadcrumb-sep">/</span>
       <span class="breadcrumb-current">{cidade}</span>
     </nav>
-
     <section class="preambulo" style="padding-top: 30px;">
       <div class="preambulo-eyebrow">{subcategoria} · {cidade}, {pais}</div>
       <h1 class="preambulo-titulo">{subcategoria} em {cidade}</h1>
       <p class="preambulo-texto">{dicas.length} {dicas.length === 1 ? 'indicação' : 'indicações'} da comunidade.</p>
     </section>
   </div>
-
   <div class="container">
     <div class="filtros-wrap">
       {dicas.length > 0 && (
