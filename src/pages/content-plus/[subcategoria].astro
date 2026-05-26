@@ -3,22 +3,18 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
-
 export async function getStaticPaths() {
-  const subs = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
+  const subs = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro', 'Artigo', 'Estudo'];
   return subs.map(s => ({
     params: { subcategoria: slugify(s) },
     props: { subcategoria: s },
   }));
 }
-
 const { subcategoria } = Astro.props;
 const base = import.meta.env.BASE_URL;
-
 const dicas = (await getCollection('dicas'))
   .filter(d => d.data.categoria === 'Content+' && d.data.subcategoria === subcategoria)
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
-
 // Subtags (3º nível)
 const subtagsSet = new Set<string>();
 dicas.forEach(d => { if (d.data.subtag) subtagsSet.add(d.data.subtag); });
@@ -27,8 +23,7 @@ const subtags = Array.from(subtagsSet).sort().map(t => ({
   slug: slugify(t),
   count: dicas.filter(d => d.data.subtag === t).length
 }));
-
-const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
+const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro', 'Artigo', 'Estudo'];
 ---
 <Layout titulo={`Content+ · ${subcategoria}`}>
   <div class="container">
@@ -42,7 +37,6 @@ const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
       </p>
     </section>
   </div>
-
   <div class="container">
     <div class="filtros-wrap">
       <h2 class="filtros-titulo">Explorar por tipo</h2>
@@ -54,7 +48,6 @@ const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
           </a>
         ))}
       </div>
-
       {subtags.length > 0 && (
         <>
           <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--oxy-ink-muted); font-weight: 600; margin: 20px 0 12px;">Filtrar por estilo</div>
@@ -69,7 +62,6 @@ const subcategorias = ['Podcast', 'Filme', 'Série', 'Documentário', 'Livro'];
           </div>
         </>
       )}
-
       {dicas.length > 0 && (
         <div class="cards-grid" style="margin-top: 28px;">
           {dicas.map(dica => (
