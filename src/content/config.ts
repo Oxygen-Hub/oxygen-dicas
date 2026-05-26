@@ -14,19 +14,22 @@ const dicas = defineCollection({
       // Viagens
       'Passeios', 'Lojas', 'Restaurantes', 'Hospedagem',
       'Roteiro', 'Destino', 'Bares e cafés', 'Outros',
+
       // Content+
       'Podcast', 'Filme', 'Série', 'Documentário', 'Livro',
+      'Artigo', 'Ferramentas', 'Estudo',
+
       // IRL
       'Exposição', 'Evento', 'Festival', 'Palestra',
+
       // Gerais
-      'Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets'
+      'Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets',
+      'Espaços'
     ]),
 
     subtag: z.string().optional(),
-
     pais: z.string().optional(),
     cidade: z.string().optional(),
-
     tags: z.array(z.string()).default([]),
 
     info: z.object({
@@ -40,6 +43,7 @@ const dicas = defineCollection({
       // Content+
       autor: z.string().optional(),
       onde_assistir: z.string().optional(),
+      onde_ler: z.string().optional(),
       duracao: z.string().optional(),
       temporadas: z.string().optional(),
       plataforma: z.string().optional(),
@@ -57,13 +61,12 @@ const dicas = defineCollection({
       pagamento: z.string().optional(),
       faixa_preco: z.string().optional(),
 
-      // Viagens extras (apareceram nos arquivos)
+      // Viagens extras
       chef: z.string().optional(),
       bairro: z.string().optional(),
       instagram: z.string().optional(),
       periodo_visita: z.string().optional(),
       duracao_sugerida: z.string().optional(),
-
     }).optional(),
 
     publicado_em: z.coerce.date(),
