@@ -2,14 +2,12 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
+import BotaoVoltar from '../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
-
 const base = import.meta.env.BASE_URL;
-
 const dicas = (await getCollection('dicas'))
   .filter(d => d.data.categoria === 'Gerais')
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
-
 const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços', 'Ferramentas'].map(s => ({
   nome: s,
   slug: slugify(s),
@@ -18,6 +16,7 @@ const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', '
 ---
 <Layout titulo="Gerais">
   <div class="container">
+    <BotaoVoltar fallbackHref={base} label="Início" />
     <section class="preambulo">
       <div class="preambulo-eyebrow">Gerais</div>
       <h1 class="preambulo-titulo">Indicações do dia a dia.</h1>
@@ -28,7 +27,6 @@ const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', '
       </p>
     </section>
   </div>
-
   <div class="container">
     <div class="filtros-wrap">
       <h2 class="filtros-titulo">Explorar por tipo</h2>
@@ -41,7 +39,6 @@ const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', '
           </a>
         ))}
       </div>
-
       {dicas.length > 0 && (
         <div class="cards-grid">
           {dicas.map(dica => (
