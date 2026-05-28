@@ -1,8 +1,10 @@
 ---
 // Componente de navegação "voltar uma página".
-// Usa history.back() do browser (volta pra página anterior real)
-// e cai num fallback (href) se a pessoa chegou via link direto.
-// Versão com position: fixed — gruda na viewport ao rolar, garantido.
+// Lógica híbrida inteligente:
+//   - Se a página anterior está DENTRO da mesma seção (fallbackHref) → vai pro fallback (pai)
+//   - Se está FORA (home, busca, outra categoria) → history.back()
+//   - Se não há referrer (link direto) → vai pro fallback
+// Visual: botão inline + versão fixed que aparece ao rolar.
 //
 // Uso: <BotaoVoltar fallbackHref={`${base}/viagens`} label="Viagens" />
 
@@ -114,20 +116,46 @@ const { fallbackHref, label } = Astro.props;
 </style>
 
 <script>
-  // 1. Intercepta clique: history.back() se veio do mesmo site, fallback caso contrário
+  // Lógica híbrida de clique
   document.querySelectorAll('.botao-voltar').forEach((btn) => {
     btn.addEventListener('click', (e) => {
+      const link = btn as HTMLAnchorElement;
+      const fallback = link.getAttribute('data-fallback') || '/';
       const referrer = document.referrer;
-      const sameSite = referrer && new URL(referrer).origin === window.location.origin;
 
-      if (sameSite && window.history.length > 1) {
-        e.preventDefault();
-        window.history.back();
+      // Sem referrer (link direto, abas nova, etc) → deixa o href fallback funcionar
+      if (!referrer) return;
+
+      try {
+        const referrerUrl = new URL(referrer);
+        const sameSite = referrerUrl.origin === window.location.origin;
+
+        // Referrer de fora do site → deixa o href fallback funcionar (não previne)
+        if (!sameSite) return;
+
+        // Normaliza paths (remove trailing slash pra comparação)
+        const referrerPath = referrerUrl.pathname.replace(/\/$/, '');
+        const fallbackPath = new URL(fallback, window.location.origin).pathname.replace(/\/$/, '');
+
+        // Se o referrer começa com o fallback path, significa que está navegando
+        // dentro da mesma seção (ex: /irl/festival/ → /irl/evento/) — vai pro pai
+        // Caso contrário (veio de home, busca, outra categoria) → history.back()
+        if (referrerPath.startsWith(fallbackPath) && referrerPath !== fallbackPath) {
+          // Está dentro da mesma seção → vai pro fallback (href padrão funciona)
+          return;
+        } else {
+          // Veio de fora da seção → volta no histórico
+          e.preventDefault();
+          window.history.back();
+        }
+      } catch (err) {
+        // Erro parseando URL → deixa o href padrão funcionar
+        return;
       }
     });
   });
 
-  // 2. Mostra o botão fixo quando o botão inline sai da tela
+  // Mostra o botão fixo quando o botão inline sai da tela
   const placeholder = document.querySelector('.botao-voltar-placeholder');
   const fixedWrap = document.querySelector('[data-fixed-wrap]');
 
@@ -135,7 +163,6 @@ const { fallbackHref, label } = Astro.props;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Se o botão inline NÃO está visível, mostra o fixo
           if (!entry.isIntersecting) {
             fixedWrap.classList.add('is-visible');
           } else {
