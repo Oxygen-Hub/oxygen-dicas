@@ -1,0 +1,83 @@
+---
+// Componente de navegação "voltar uma página".
+// Usa history.back() do browser (volta pra página anterior real)
+// e cai num fallback (href) se a pessoa chegou via link direto.
+//
+// Uso: <BotaoVoltar fallbackHref={`${base}/viagens`} label="Viagens" />
+
+export interface Props {
+  fallbackHref: string;
+  label: string;
+}
+
+const { fallbackHref, label } = Astro.props;
+---
+
+<a
+  href={fallbackHref}
+  class="botao-voltar"
+  data-fallback={fallbackHref}
+  aria-label={`Voltar para ${label}`}
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="19" y1="12" x2="5" y2="12"/>
+    <polyline points="12 19 5 12 12 5"/>
+  </svg>
+  <span>Voltar para {label}</span>
+</a>
+
+<style>
+  .botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 8px 12px;
+    margin: 24px 0 8px;
+    border: 1px solid var(--oxy-coral, #e85a4f);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--oxy-coral, #e85a4f);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .botao-voltar:hover,
+  .botao-voltar:focus-visible {
+    background: var(--oxy-coral, #e85a4f);
+    color: #fff;
+    transform: translateX(-2px);
+  }
+
+  .botao-voltar svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .botao-voltar span {
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  // Intercepta o clique pra usar history.back() quando tiver histórico real.
+  // Fallback pro href se chegou direto (sem histórico interno do site).
+  document.querySelectorAll('.botao-voltar').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      // Se a pessoa veio de outra página do MESMO site, usa back.
+      // Senão, deixa o href normal funcionar (não previne o default).
+      const referrer = document.referrer;
+      const sameSite = referrer && new URL(referrer).origin === window.location.origin;
+
+      if (sameSite && window.history.length > 1) {
+        e.preventDefault();
+        window.history.back();
+      }
+      // Se não veio do mesmo site, o link normal funciona com o href (fallback)
+    });
+  });
+</script>
