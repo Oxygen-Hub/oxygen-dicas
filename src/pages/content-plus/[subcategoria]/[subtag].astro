@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Card from '../../../components/Card.astro';
+import BotaoVoltar from '../../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../../utils/helpers';
 export async function getStaticPaths() {
   const dicas = await getCollection('dicas');
@@ -33,7 +34,8 @@ const dicas = (await getCollection('dicas'))
 ---
 <Layout titulo={`${subcategoria} · ${subtag}`}>
   <div class="container">
-    <nav class="breadcrumb" style="padding-top: 30px;">
+    <BotaoVoltar fallbackHref={`${base}/content-plus/${slugify(subcategoria)}`} label={subcategoria} />
+    <nav class="breadcrumb" style="padding-top: 12px;">
       <a href={base}>Início</a>
       <span class="breadcrumb-sep">/</span>
       <a href={`${base}/content-plus`}>Content+</a>
