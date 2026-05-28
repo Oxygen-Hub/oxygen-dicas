@@ -2,14 +2,12 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
+import BotaoVoltar from '../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
-
 const base = import.meta.env.BASE_URL;
-
 const dicas = (await getCollection('dicas'))
   .filter(d => d.data.categoria === 'Viagens')
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
-
 // Subcategorias com contagem
 const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Outros'].map(s => ({
   nome: s,
@@ -19,6 +17,7 @@ const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Rotei
 ---
 <Layout titulo="Viagens">
   <div class="container">
+    <BotaoVoltar fallbackHref={base} label="Início" />
     <section class="preambulo">
       <div class="preambulo-eyebrow">Viagens</div>
       <h1 class="preambulo-titulo">Lugares pra ir, comer,<br />ficar e descobrir.</h1>
@@ -29,7 +28,6 @@ const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Rotei
       </p>
     </section>
   </div>
-
   <div class="container">
     <div class="filtros-wrap">
       <h2 class="filtros-titulo">Explorar por tipo</h2>
@@ -42,7 +40,6 @@ const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Rotei
           </a>
         ))}
       </div>
-
       {dicas.length > 0 && (
         <div class="cards-grid">
           {dicas.map(dica => (
