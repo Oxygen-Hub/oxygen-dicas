@@ -1,5 +1,5 @@
 ---
-titulo: "Pelé, Zico e o futebol (documentário do Zico)"
+titulo: "Zico, O Samurai De Quintino (documentário do Zico)"
 categoria: "Content+"
 subcategoria: "Documentário"
 tags:
