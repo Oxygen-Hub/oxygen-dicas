@@ -8,7 +8,7 @@ tags:
 info:
   nome_profissional: "Dra. Chris Guarnieri"
   especialidade: "Dermatologia"
-  instagram: "https://www.instagram.com/drachrisguarnieri"
+  instagram: "drachrisguarnieri"
   indicado_por: "Andrea Janér"
 publicado_em: 2026-06-15
 destaque: false
