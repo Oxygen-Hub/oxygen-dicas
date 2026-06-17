@@ -520,6 +520,29 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   gap: 8px;
 }
 
+.detalhe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.detalhe-tag {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--oxy-orange-faint);
+  color: var(--oxy-orange-dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.detalhe-tag:hover {
+  background: var(--oxy-orange-light);
+  color: var(--oxy-orange);
+}
+
 /* ============================================================
    Footer global
    ============================================================ */
