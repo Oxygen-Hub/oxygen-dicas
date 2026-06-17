@@ -8,6 +8,8 @@ cidade: "Nova York"
 tags:
   - "nova-york"
   - "restaurantes"
+  - "bar"
+  - "bares"
 info:
   indicado_por: "Isa Rezende"
 publicado_em: 2026-04-28

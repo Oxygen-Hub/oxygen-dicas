@@ -2,13 +2,13 @@
 titulo: "Nature Atins"
 subtitulo: "Agência de passeios e transfers nos Lençóis Maranhenses."
 categoria: "Viagens"
-subcategoria: "Passeios"
+subcategoria: "Agência"
 pais: "Brasil"
 tags:
   - "natureza"
   - "praia"
 info:
-  instagram: "@natureatins"
+  instagram: "natureatins"
   indicado_por: "Paula Moreira"
 publicado_em: 2026-05-24
 ---

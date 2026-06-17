@@ -7,6 +7,8 @@ pais: "África do Sul"
 tags:
   - "vinho"
   - "fine-dining"
+  - "passeio"
+  - "vinicola"
 info:
   indicado_por: "Simone Ivatchkovitch"
 publicado_em: 2026-05-28

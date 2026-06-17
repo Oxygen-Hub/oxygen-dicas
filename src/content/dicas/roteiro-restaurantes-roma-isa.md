@@ -8,6 +8,7 @@ cidade: "Roma"
 tags:
   - "roma"
   - "restaurantes"
+  - "restaurante"
 info:
   indicado_por: "Isa Rezende"
 publicado_em: 2026-03-15

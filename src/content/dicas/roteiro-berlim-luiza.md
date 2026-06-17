@@ -9,6 +9,9 @@ tags:
   - "berlim"
   - "museus"
   - "cultura"
+  - "restaurante"
+  - "loja"
+  - "passeio"
 info:
   indicado_por: "Luiza Secco"
 publicado_em: 2026-04-15
