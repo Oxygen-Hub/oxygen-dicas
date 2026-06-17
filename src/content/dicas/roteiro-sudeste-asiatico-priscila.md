@@ -3,6 +3,7 @@ titulo: "Sudeste Asiático — Vietnã, Camboja, Tailândia e Laos"
 subtitulo: "Como dividir os dias entre os países e o que ver em cada um."
 categoria: "Viagens"
 subcategoria: "Roteiro"
+regiao: "Sudeste Asiático"
 tags:
   - "natureza"
   - "cultura"
