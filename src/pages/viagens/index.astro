@@ -9,7 +9,7 @@ const dicas = (await getCollection('dicas'))
   .filter(d => d.data.categoria === 'Viagens')
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
 // Subcategorias com contagem
-const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Outros'].map(s => ({
+const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Guia', 'Agência', 'Outros'].map(s => ({
   nome: s,
   slug: slugify(s),
   count: dicas.filter(d => d.data.subcategoria === s).length
