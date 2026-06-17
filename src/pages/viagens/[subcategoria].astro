@@ -5,7 +5,7 @@ import Card from '../../components/Card.astro';
 import BotaoVoltar from '../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
 export async function getStaticPaths() {
-  const subs = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Outros'];
+  const subs = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Guia', 'Agência', 'Outros'];
   return subs.map(s => ({
     params: { subcategoria: slugify(s) },
     props: { subcategoria: s },
@@ -26,7 +26,7 @@ const paises = Array.from(paisesSet).sort().map(p => ({
 }));
 // Subcategorias pra filtro de cima continuar visível
 function slugifyS(s: string) { return slugify(s); }
-const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Outros'];
+const subcategorias = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Guia', 'Agência', 'Outros'];
 ---
 <Layout titulo={`Viagens · ${subcategoria}`}>
   <div class="container">
