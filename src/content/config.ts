@@ -13,7 +13,7 @@ const dicas = defineCollection({
     subcategoria: z.enum([
       // Viagens
       'Passeios', 'Lojas', 'Restaurantes', 'Hospedagem',
-      'Roteiro', 'Destino', 'Bares e cafés', 'Outros',
+      'Roteiro', 'Destino', 'Bares e cafés', 'Guia', 'Agência', 'Outros',
 
       // Content+
       'Podcast', 'Filme', 'Série', 'Documentário', 'Livro',
@@ -24,7 +24,7 @@ const dicas = defineCollection({
 
       // Gerais
       'Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets',
-      'Espaços'
+     'Espaços', 'Catering'
     ]),
 
     subtag: z.string().optional(),
