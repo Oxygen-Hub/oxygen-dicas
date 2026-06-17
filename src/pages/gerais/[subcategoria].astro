@@ -5,7 +5,7 @@ import Card from '../../components/Card.astro';
 import BotaoVoltar from '../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
 export async function getStaticPaths() {
-  const subs = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços', 'Ferramentas'];
+  const subs = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços', 'Ferramentas', 'Catering'];
   return subs.map(s => ({
     params: { subcategoria: slugify(s) },
     props: { subcategoria: s },
@@ -23,7 +23,7 @@ const paises = Array.from(paisesSet).sort().map(p => ({
   slug: slugify(p),
   count: dicas.filter(d => d.data.pais === p).length
 }));
-const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços', 'Ferramentas'];
+const subcategorias = ['Profissionais', 'Casa', 'Beleza', 'Compras', 'Saúde', 'Pets', 'Espaços', 'Ferramentas', 'Catering'];
 ---
 <Layout titulo={`Gerais · ${subcategoria}`}>
   <div class="container">
