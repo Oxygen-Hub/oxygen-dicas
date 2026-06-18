@@ -6,7 +6,9 @@ subcategoria: "Guia"
 pais: "Chile"
 tags:
   - "atacama"
-  - "guia"
+  - "chile"
+  - "natureza"
+  - "deserto"
 info:
   nome_profissional: "Christian"
   especialidade: "Guia no Atacama"

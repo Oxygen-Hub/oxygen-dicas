@@ -7,7 +7,10 @@ pais: "França"
 cidade: "Paris"
 tags:
   - "paris"
-  - "agencia"
+  - "franca"
+  - "roteiro"
+  - "planejamento"
+  - "travel-designer"
 info:
   nome_profissional: "Mel Rolan"
   especialidade: "Travel designer"

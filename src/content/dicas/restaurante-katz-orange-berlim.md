@@ -7,6 +7,9 @@ pais: "Alemanha"
 cidade: "Berlim"
 tags:
   - "berlim"
+  - "alemanha"
+  - "contemporaneo"
+  - "reserva"
 info:
   endereco: "Bergstraße 22, 10115 Berlim"
   bairro: "Mitte"

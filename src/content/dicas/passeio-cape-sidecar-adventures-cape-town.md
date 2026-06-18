@@ -8,6 +8,9 @@ cidade: "Cape Town"
 tags:
   - "cape-town"
   - "aventura"
+  - "africa-do-sul"
+  - "moto"
+  - "city-tour"
 info:
   site: "sidecars.co.za"
   instagram: "@capesidecaradventures"

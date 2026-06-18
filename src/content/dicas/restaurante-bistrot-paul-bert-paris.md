@@ -7,6 +7,10 @@ pais: "França"
 cidade: "Paris"
 tags:
   - "paris"
+  - "franca"
+  - "frances"
+  - "bistro"
+  - "carne"
 info:
   endereco: "18 Rue Paul Bert, 75011 Paris"
   bairro: "11ème"

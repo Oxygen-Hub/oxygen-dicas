@@ -6,7 +6,8 @@ subcategoria: "Agência"
 pais: "Marrocos"
 tags:
   - "marrocos"
-  - "guia"
+  - "roteiro"
+  - "planejamento"
 info:
   nome_profissional: "Sônia Medeiros"
   especialidade: "Guia / viagens no Marrocos"

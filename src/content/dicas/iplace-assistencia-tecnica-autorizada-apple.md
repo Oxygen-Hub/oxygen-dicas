@@ -3,9 +3,10 @@ titulo: "iPlace — Assistência técnica autorizada Apple"
 categoria: "Gerais"
 subcategoria: "Profissionais"
 tags:
-  - "Profissionais"
-  - "Assistência técnica"
-  - "Apple"
+  - "assistencia-tecnica"
+  - "apple"
+  - "campinas"
+  - "sao-paulo"
 info:
   especialidade: "Assistência autorizada Apple"
   bairro: "JK e Ibirapuera — São Paulo/SP"

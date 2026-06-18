@@ -3,9 +3,9 @@ titulo: "FlowerClub — Assinatura de flores"
 categoria: "Gerais"
 subcategoria: "Casa"
 tags:
-  - "Casa"
-  - "Flores"
-  - "Assinatura"
+  - "flores"
+  - "assinatura"
+  - "decoracao"
 info:
   nome_profissional: "FlowerClub"
   especialidade: "Assinatura de flores"

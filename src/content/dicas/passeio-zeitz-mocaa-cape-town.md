@@ -7,8 +7,9 @@ pais: "África do Sul"
 cidade: "Cape Town"
 tags:
   - "cape-town"
-  - "museus"
+  - "museu"
   - "arte-contemporanea"
+  - "africa-do-sul"
 info:
   endereco: "Silo District, S Arm Road, V&A Waterfront, Cape Town 8001"
   horario: "Terça a domingo, 10h–18h (fechado às segundas)"

@@ -7,6 +7,11 @@ pais: "Brasil"
 tags:
   - "natureza"
   - "familia"
+  - "brasil"
+  - "hotel"
+  - "luxo"
+  - "cataratas"
+  - "iguacu"
 info:
   endereco: "Parque Nacional do Iguaçu, Foz do Iguaçu/PR"
   indicado_por: "Lorena Viana"

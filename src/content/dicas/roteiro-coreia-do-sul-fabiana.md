@@ -8,6 +8,8 @@ cidade: "Seul"
 tags:
   - "cultura"
   - "familia"
+  - "coreia-do-sul"
+  - "seul"
 info:
   indicado_por: "Fabiana Caporal"
 publicado_em: 2025-10-25

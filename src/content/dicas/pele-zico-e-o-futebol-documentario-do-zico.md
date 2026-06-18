@@ -3,8 +3,9 @@ titulo: "Zico, O Samurai De Quintino (documentário do Zico)"
 categoria: "Content+"
 subcategoria: "Documentário"
 tags:
-  - "Documentário"
-  - "Futebol"
+  - "futebol"
+  - "esporte"
+  - "biografia"
 info:
   onde_assistir: "YouTube"
   site: "https://youtu.be/fxz8_j4x7CM"

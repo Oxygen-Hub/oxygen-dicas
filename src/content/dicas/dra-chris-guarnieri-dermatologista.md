@@ -3,8 +3,9 @@ titulo: "Dra. Chris Guarnieri — Dermatologista"
 categoria: "Gerais"
 subcategoria: "Saúde"
 tags:
-  - "Saúde"
-  - "Dermatologia"
+  - "dermatologia"
+  - "dermatologista"
+  - "sao-paulo"
 info:
   nome_profissional: "Dra. Chris Guarnieri"
   especialidade: "Dermatologia"

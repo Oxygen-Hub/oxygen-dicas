@@ -4,8 +4,11 @@ subtitulo: "Serviço de cotação de voos pelo WhatsApp."
 categoria: "Gerais"
 subcategoria: "Ferramentas"
 tags:
-  - "voos"
+  - "voo"
   - "ferramenta"
+  - "passagem"
+  - "viagem"
+  - "planejamento"
 info:
   indicado_por: "Monica Klein"
 publicado_em: 2026-05-24

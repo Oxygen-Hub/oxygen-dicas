@@ -5,9 +5,10 @@ subcategoria: "Guia"
 pais: "Brasil"
 cidade: "Inhotim"
 tags:
-  - "Profissionais"
-  - "Guia"
-  - "Inhotim"
+  - "inhotim"
+  - "brasil"
+  - "arte"
+  - "familia"
 info:
   nome_profissional: "Guil Damasceno"
   especialidade: "Guia em Inhotim"

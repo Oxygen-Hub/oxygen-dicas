@@ -4,8 +4,11 @@ subtitulo: "Buscador de passagens aéreas com comparação de preços e datas."
 categoria: "Gerais"
 subcategoria: "Ferramentas"
 tags:
-  - "voos"
+  - "voo"
   - "ferramenta"
+  - "passagem"
+  - "comparador"
+  - "viagem"
 info:
   site: "skyscanner.com.br"
   indicado_por: "Comunidade Oxygen"

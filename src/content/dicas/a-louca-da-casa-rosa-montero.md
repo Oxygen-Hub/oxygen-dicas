@@ -3,8 +3,10 @@ titulo: "A louca da casa — Rosa Montero"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ensaio"
+  - "escrita"
+  - "criatividade"
 info:
   autor: "Rosa Montero"
   indicado_por: "Mari Savaget"

@@ -8,6 +8,9 @@ cidade: "Nova York"
 tags:
   - "nova-york"
   - "cultura"
+  - "estados-unidos"
+  - "programas"
+  - "teatro"
 info:
   indicado_por: "Ana Emilia"
 publicado_em: 2026-04-28

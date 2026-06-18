@@ -8,6 +8,7 @@ cidade: "Berlim"
 tags:
   - "berlim"
   - "musica"
+  - "alemanha"
 info:
   indicado_por: "Camila Rocha"
 publicado_em: 2026-06-06

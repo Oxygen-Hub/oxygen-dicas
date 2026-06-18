@@ -3,8 +3,9 @@ titulo: "Água fresca para flores — Valérie Perrin"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "frances"
 info:
   autor: "Valérie Perrin"
   indicado_por: "Katia Ambrosio, Juliana Manfrini"

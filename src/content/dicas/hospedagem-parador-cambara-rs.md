@@ -6,7 +6,10 @@ subcategoria: "Hospedagem"
 pais: "Brasil"
 tags:
   - "natureza"
-  - "canions"
+  - "canion"
+  - "brasil"
+  - "hotel"
+  - "serra-gaucha"
 info:
   site: "paradorcasahoteis.com.br"
   indicado_por: "Natalia Lima"

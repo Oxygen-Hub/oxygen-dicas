@@ -5,9 +5,9 @@ subcategoria: "Guia"
 pais: "Brasil"
 cidade: "Inhotim"
 tags:
-  - "Profissionais"
-  - "Guia"
-  - "Inhotim"
+  - "inhotim"
+  - "brasil"
+  - "arte"
 info:
   nome_profissional: "Júnio César"
   especialidade: "Guia em Inhotim"

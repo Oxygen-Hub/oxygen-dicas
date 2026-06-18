@@ -9,6 +9,7 @@ tags:
   - "cape-town"
   - "fine-dining"
   - "constantia"
+  - "africa-do-sul"
 info:
   endereco: "Silvermist Wine Estate, Main Road, Constantia Nek, Cape Town 7806"
   bairro: "Constantia"

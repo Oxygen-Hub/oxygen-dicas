@@ -3,9 +3,10 @@ titulo: "Estera — Professora de piano"
 categoria: "Gerais"
 subcategoria: "Profissionais"
 tags:
-  - "Profissionais"
-  - "Música"
-  - "Piano"
+  - "musica"
+  - "piano"
+  - "aula"
+  - "sao-paulo"
 info:
   nome_profissional: "Estera"
   especialidade: "Aulas de piano"

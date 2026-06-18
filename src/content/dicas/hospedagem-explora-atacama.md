@@ -8,6 +8,7 @@ tags:
   - "atacama"
   - "natureza"
   - "aventura"
+  - "chile"
 info:
   site: "explora.com"
   indicado_por: "Ana Emilia"

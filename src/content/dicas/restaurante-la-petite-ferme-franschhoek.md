@@ -9,6 +9,7 @@ tags:
   - "fine-dining"
   - "passeio"
   - "vinicola"
+  - "africa-do-sul"
 info:
   indicado_por: "Simone Ivatchkovitch"
 publicado_em: 2026-05-28

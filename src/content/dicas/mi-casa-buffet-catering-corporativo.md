@@ -3,9 +3,9 @@ titulo: "Mi Casa Buffet — Catering corporativo"
 categoria: "Gerais"
 subcategoria: "Catering"
 tags:
-  - "Profissionais"
-  - "Catering"
-  - "Eventos"
+  - "eventos"
+  - "buffet"
+  - "corporativo"
 info:
   nome_profissional: "Mi Casa Buffet"
   especialidade: "Buffet e kits para empresas"

@@ -8,6 +8,10 @@ cidade: "Paris"
 tags:
   - "paris"
   - "vinho"
+  - "franca"
+  - "degustacao"
+  - "loja"
+  - "restaurante"
 info:
   bairro: "Le Marais"
   indicado_por: "Ana Lavaquial"

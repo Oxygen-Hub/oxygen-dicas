@@ -8,6 +8,7 @@ tags:
   - "natureza"
   - "praia"
   - "familia"
+  - "brasil"
 info:
   periodo_visita: "De julho em diante (época das lagoas cheias)"
   indicado_por: "Paula Moreira"

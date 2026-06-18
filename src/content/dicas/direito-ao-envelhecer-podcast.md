@@ -3,7 +3,10 @@ titulo: "Direito ao Envelhecer (podcast)"
 categoria: "Content+"
 subcategoria: "Podcast"
 tags:
-  - "Podcast"
+  - "envelhecimento"
+  - "saude"
+  - "longevidade"
+  - "cultura"
 info:
   plataforma: "Spotify"
   site: "https://open.spotify.com/episode/7HegofOF3yPkeXnXM83hFd"

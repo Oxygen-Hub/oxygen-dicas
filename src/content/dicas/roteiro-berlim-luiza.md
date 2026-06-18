@@ -7,11 +7,12 @@ pais: "Alemanha"
 cidade: "Berlim"
 tags:
   - "berlim"
-  - "museus"
+  - "museu"
   - "cultura"
   - "restaurante"
   - "loja"
   - "passeio"
+  - "alemanha"
 info:
   indicado_por: "Luiza Secco"
 publicado_em: 2026-04-15

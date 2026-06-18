@@ -3,8 +3,10 @@ titulo: "Dra. Cinira Soledade — Reumatologista"
 categoria: "Gerais"
 subcategoria: "Saúde"
 tags:
-  - "Saúde"
-  - "Reumatologia"
+  - "reumatologia"
+  - "reumatologista"
+  - "telemedicina"
+  - "campinas"
 info:
   nome_profissional: "Dra. Cinira Soledade"
   especialidade: "Reumatologia (fibromialgia)"

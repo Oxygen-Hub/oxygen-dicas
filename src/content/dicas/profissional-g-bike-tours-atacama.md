@@ -7,7 +7,9 @@ pais: "Chile"
 tags:
   - "chile"
   - "atacama"
-  - "guia"
+  - "natureza"
+  - "aventura"
+  - "bike"
 info:
   nome_profissional: "Gabriel (G Bike Tours)"
   especialidade: "Passeios / guia no Chile"

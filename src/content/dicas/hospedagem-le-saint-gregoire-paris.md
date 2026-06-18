@@ -7,6 +7,10 @@ pais: "França"
 cidade: "Paris"
 tags:
   - "paris"
+  - "franca"
+  - "hotel"
+  - "charme"
+  - "st-germain"
 info:
   endereco: "43 Rue de l'Abbé Grégoire, 75006 Paris"
   bairro: "6ème (Saint-Germain-des-Prés)"

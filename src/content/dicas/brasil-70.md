@@ -3,8 +3,10 @@ titulo: "Brasil 70"
 categoria: "Content+"
 subcategoria: "Série"
 tags:
-  - "Série"
-  - "Documentário"
+  - "documentario"
+  - "netflix"
+  - "musica"
+  - "brasil"
 info:
   plataforma: "Netflix"
   indicado_por: "Priscila Freitas"

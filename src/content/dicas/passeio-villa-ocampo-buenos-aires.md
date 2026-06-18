@@ -8,6 +8,8 @@ cidade: "Buenos Aires"
 tags:
   - "cultura"
   - "arquitetura"
+  - "argentina"
+  - "buenos-aires"
 info:
   instagram: "@villa_ocampo"
   indicado_por: "Paula Junqueira"

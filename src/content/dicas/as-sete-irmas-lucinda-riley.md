@@ -3,8 +3,10 @@ titulo: "As Sete Irmãs — Lucinda Riley"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "familia"
+  - "saga"
 info:
   autor: "Lucinda Riley"
   indicado_por: "Lorena Viana"

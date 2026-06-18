@@ -8,6 +8,7 @@ tags:
   - "natureza"
   - "cultura"
   - "familia"
+  - "alemanha"
 info:
   indicado_por: "Lorena Viana"
 publicado_em: 2026-03-01

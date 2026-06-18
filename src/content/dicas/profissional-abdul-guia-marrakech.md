@@ -7,7 +7,9 @@ pais: "Marrocos"
 cidade: "Marrakech"
 tags:
   - "marrocos"
-  - "guia"
+  - "marrakech"
+  - "historia"
+  - "cultura"
 info:
   nome_profissional: "Abdul"
   especialidade: "Guia em Marrakech"

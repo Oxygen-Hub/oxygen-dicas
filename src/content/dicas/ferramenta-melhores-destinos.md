@@ -4,8 +4,11 @@ subtitulo: "Site que acompanha datas com boas promoções de passagens."
 categoria: "Gerais"
 subcategoria: "Ferramentas"
 tags:
-  - "voos"
+  - "voo"
   - "ferramenta"
+  - "passagem"
+  - "promocao"
+  - "viagem"
 info:
   site: "melhoresdestinos.com.br"
   indicado_por: "Helena Vilela"

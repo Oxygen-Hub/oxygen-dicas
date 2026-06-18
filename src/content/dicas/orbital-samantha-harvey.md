@@ -3,8 +3,10 @@ titulo: "Orbital — Samantha Harvey"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "premiado"
+  - "espaco"
 info:
   autor: "Samantha Harvey"
   indicado_por: "Stefania Granito, Paula Jacob"

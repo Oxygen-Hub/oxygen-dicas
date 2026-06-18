@@ -3,8 +3,10 @@ titulo: "O Arroz de Palma — Francisco Azevedo"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "familia"
+  - "brasileiro"
 info:
   autor: "Francisco Azevedo"
   site: "https://www.record.com.br/products/o-arroz-de-palma/"

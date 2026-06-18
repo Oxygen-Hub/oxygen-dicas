@@ -7,7 +7,9 @@ pais: "Dinamarca"
 cidade: "Copenhagen"
 tags:
   - "cultura"
-  - "museus"
+  - "museu"
+  - "dinamarca"
+  - "copenhagen"
 info:
   indicado_por: "Isa Rezende"
 publicado_em: 2025-05-08

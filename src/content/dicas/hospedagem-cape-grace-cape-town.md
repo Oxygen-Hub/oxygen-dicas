@@ -8,6 +8,9 @@ cidade: "Cape Town"
 tags:
   - "cape-town"
   - "v-a-waterfront"
+  - "africa-do-sul"
+  - "hotel"
+  - "luxo"
 info:
   endereco: "West Quay Road, V&A Waterfront, Cape Town"
   bairro: "V&A Waterfront"

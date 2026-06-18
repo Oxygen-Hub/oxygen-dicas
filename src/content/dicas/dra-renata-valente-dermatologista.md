@@ -3,8 +3,10 @@ titulo: "Dra. Renata Valente — Dermatologista"
 categoria: "Gerais"
 subcategoria: "Saúde"
 tags:
-  - "Saúde"
-  - "Dermatologia"
+  - "dermatologia"
+  - "dermatologista"
+  - "natural"
+  - "sao-paulo"
 info:
   nome_profissional: "Dra. Renata Valente"
   especialidade: "Dermatologia (resultado natural)"

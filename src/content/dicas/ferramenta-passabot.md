@@ -4,8 +4,10 @@ subtitulo: "Ferramenta para procurar voos, indicada no grupo."
 categoria: "Gerais"
 subcategoria: "Ferramentas"
 tags:
-  - "voos"
+  - "voo"
   - "ferramenta"
+  - "passagem"
+  - "viagem"
 info:
   indicado_por: "Marta Oliveira"
 publicado_em: 2026-05-24

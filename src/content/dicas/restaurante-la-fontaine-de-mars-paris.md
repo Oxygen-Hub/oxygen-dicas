@@ -7,6 +7,10 @@ pais: "França"
 cidade: "Paris"
 tags:
   - "paris"
+  - "franca"
+  - "frances"
+  - "bistro"
+  - "classico"
 info:
   endereco: "129 Rue Saint-Dominique, 75007 Paris"
   site: "fontainedemars.com"

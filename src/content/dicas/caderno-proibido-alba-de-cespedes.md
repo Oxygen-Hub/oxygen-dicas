@@ -3,8 +3,10 @@ titulo: "Caderno Proibido — Alba de Céspedes"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "italiano"
+  - "feminino"
 info:
   autor: "Alba de Céspedes"
   site: "https://www.companhiadasletras.com.br/livro/9786559212194/caderno-proibido"

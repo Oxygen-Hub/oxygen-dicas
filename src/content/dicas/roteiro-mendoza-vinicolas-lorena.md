@@ -8,6 +8,8 @@ cidade: "Mendoza"
 tags:
   - "vinho"
   - "natureza"
+  - "argentina"
+  - "mendoza"
 info:
   indicado_por: "Lorena Viana"
 publicado_em: 2026-05-19

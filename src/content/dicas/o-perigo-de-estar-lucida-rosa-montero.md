@@ -3,8 +3,9 @@ titulo: "O Perigo de estar Lúcida — Rosa Montero"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ensaio"
+  - "criatividade"
 info:
   autor: "Rosa Montero"
   indicado_por: "Ana Emilia"

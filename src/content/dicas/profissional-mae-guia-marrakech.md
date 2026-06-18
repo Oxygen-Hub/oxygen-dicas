@@ -7,7 +7,9 @@ pais: "Marrocos"
 cidade: "Marrakech"
 tags:
   - "marrocos"
-  - "guia"
+  - "marrakech"
+  - "cultura"
+  - "familia"
 info:
   nome_profissional: "Mae"
   especialidade: "Guia em Marrakech"

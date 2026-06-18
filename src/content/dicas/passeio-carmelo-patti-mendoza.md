@@ -7,6 +7,10 @@ pais: "Argentina"
 cidade: "Mendoza"
 tags:
   - "vinho"
+  - "argentina"
+  - "mendoza"
+  - "vinicola"
+  - "degustacao"
 info:
   bairro: "Luján de Cuyo"
   indicado_por: "Lorena Viana"

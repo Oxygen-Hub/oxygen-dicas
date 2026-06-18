@@ -9,6 +9,7 @@ tags:
   - "franschhoek"
   - "fazenda"
   - "vinho"
+  - "africa-do-sul"
 info:
   endereco: "Klapmuts/Simondium Road, Drakenstein Valley, entre Franschhoek e Paarl"
   bairro: "Simonsberg-Paarl"

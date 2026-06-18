@@ -7,7 +7,9 @@ pais: "Itália"
 cidade: "Veneza"
 tags:
   - "veneza"
-  - "guia"
+  - "italia"
+  - "historia"
+  - "arte"
 info:
   nome_profissional: "Cristina Venturini"
   especialidade: "Guia em Veneza"

@@ -3,9 +3,10 @@ titulo: "MADMACS — Assistência MacBook (Frederico de Wit)"
 categoria: "Gerais"
 subcategoria: "Profissionais"
 tags:
-  - "Profissionais"
-  - "Assistência técnica"
-  - "Apple"
+  - "assistencia-tecnica"
+  - "apple"
+  - "macbook"
+  - "augusta"
 info:
   nome_profissional: "Frederico de Wit (MADMACS)"
   especialidade: "Conserto de MacBook"

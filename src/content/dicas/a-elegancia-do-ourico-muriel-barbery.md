@@ -3,8 +3,9 @@ titulo: "A Elegância do Ouriço — Muriel Barbery"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "frances"
 info:
   autor: "Muriel Barbery"
   indicado_por: "Ludmila Oliveira"

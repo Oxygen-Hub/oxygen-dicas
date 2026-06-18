@@ -7,7 +7,10 @@ pais: "Itália"
 cidade: "Veneza"
 tags:
   - "veneza"
-  - "guia"
+  - "italia"
+  - "historia"
+  - "arte"
+  - "bienal"
 info:
   nome_profissional: "Fabiana Grimani"
   especialidade: "Guia / historiadora em Veneza"

@@ -7,6 +7,10 @@ pais: "Alemanha"
 cidade: "Berlim"
 tags:
   - "berlim"
+  - "alemanha"
+  - "hotel"
+  - "mitte"
+  - "design"
 info:
   bairro: "Mitte"
   site: "telegraphenamt.com"

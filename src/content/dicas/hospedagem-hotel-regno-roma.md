@@ -7,6 +7,10 @@ pais: "Itália"
 cidade: "Roma"
 tags:
   - "roma"
+  - "italia"
+  - "hotel"
+  - "via-del-corso"
+  - "familia"
 info:
   endereco: "Via del Corso, 330, 00186 Roma"
   bairro: "Centro histórico (Via del Corso)"

@@ -6,8 +6,10 @@ subcategoria: "Roteiro"
 pais: "Argentina"
 cidade: "Buenos Aires"
 tags:
-  - "restaurantes"
+  - "restaurante"
   - "compras"
+  - "argentina"
+  - "buenos-aires"
 info:
   indicado_por: "Luiza Secco"
 publicado_em: 2026-05-19

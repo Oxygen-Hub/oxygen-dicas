@@ -3,8 +3,9 @@ titulo: "Pão e Talho — Mini sanduíches"
 categoria: "Gerais"
 subcategoria: "Catering"
 tags:
-  - "Profissionais"
-  - "Catering"
+  - "sanduiche"
+  - "padaria"
+  - "eventos"
 info:
   nome_profissional: "Pão e Talho"
   especialidade: "Mini sanduíches para reuniões"

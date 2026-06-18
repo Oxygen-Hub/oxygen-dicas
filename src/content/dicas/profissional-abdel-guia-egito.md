@@ -6,7 +6,9 @@ subcategoria: "Guia"
 pais: "Egito"
 tags:
   - "egito"
-  - "guia"
+  - "historia"
+  - "egitologia"
+  - "familia"
 info:
   nome_profissional: "Abdel"
   especialidade: "Guia / egiptólogo no Egito"

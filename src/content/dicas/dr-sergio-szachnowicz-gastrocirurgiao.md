@@ -3,8 +3,10 @@ titulo: "Dr. Sergio Szachnowicz — Gastrocirurgião"
 categoria: "Gerais"
 subcategoria: "Saúde"
 tags:
-  - "Saúde"
-  - "Cirurgia do Aparelho Digestivo"
+  - "cirurgia-do-aparelho-digestivo"
+  - "gastro"
+  - "cirurgia"
+  - "sao-paulo"
 info:
   nome_profissional: "Dr. Sergio Szachnowicz"
   especialidade: "Cirurgia do aparelho digestivo"

@@ -3,9 +3,9 @@ titulo: "Empório Romã — Catering (Aline Thomazinho)"
 categoria: "Gerais"
 subcategoria: "Catering"
 tags:
-  - "Profissionais"
-  - "Catering"
-  - "Eventos"
+  - "eventos"
+  - "reuniao"
+  - "sao-paulo"
 info:
   nome_profissional: "Aline Thomazinho (Empório Romã)"
   especialidade: "Catering para eventos e reuniões"

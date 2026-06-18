@@ -3,9 +3,10 @@ titulo: "Macfix — Assistência Mac (Paulo Pinheiro)"
 categoria: "Gerais"
 subcategoria: "Profissionais"
 tags:
-  - "Profissionais"
-  - "Assistência técnica"
-  - "Apple"
+  - "assistencia-tecnica"
+  - "apple"
+  - "mac"
+  - "itaim"
 info:
   nome_profissional: "Paulo Pinheiro (Macfix)"
   especialidade: "Assistência Apple"

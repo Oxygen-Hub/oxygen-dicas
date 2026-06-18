@@ -3,8 +3,10 @@ titulo: "Flow"
 categoria: "Content+"
 subcategoria: "Filme"
 tags:
-  - "Filme"
-  - "Animação"
+  - "animacao"
+  - "premiado"
+  - "letonia"
+  - "gato"
 info:
   indicado_por: "Paula Jacob"
 publicado_em: 2026-06-15

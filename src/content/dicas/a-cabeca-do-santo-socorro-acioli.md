@@ -3,8 +3,9 @@ titulo: "A Cabeça do Santo — Socorro Acioli"
 categoria: "Content+"
 subcategoria: "Livro"
 tags:
-  - "Livro"
-  - "Literatura"
+  - "literatura"
+  - "ficcao"
+  - "brasileiro"
 info:
   autor: "Socorro Acioli"
   indicado_por: "Regina Von Zuben"

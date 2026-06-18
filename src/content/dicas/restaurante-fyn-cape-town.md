@@ -9,6 +9,7 @@ tags:
   - "cape-town"
   - "fine-dining"
   - "japones"
+  - "africa-do-sul"
 info:
   endereco: "5º andar, Speakers Corner, 37 Parliament Street, Cape Town 8001"
   chef: "Peter Tempelhoff"

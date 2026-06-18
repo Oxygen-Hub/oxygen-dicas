@@ -9,6 +9,7 @@ tags:
   - "kruger"
   - "timbavati"
   - "natureza"
+  - "africa-do-sul"
 info:
   endereco: "Timbavati Private Nature Reserve, Greater Kruger National Park"
   reservas: "Diretamente pelo site"

@@ -7,6 +7,7 @@ pais: "Coreia do Sul"
 tags:
   - "coreia-do-sul"
   - "motorista"
+  - "transfer"
 info:
   nome_profissional: "Allen Kim"
   especialidade: "Motorista na Coreia do Sul"

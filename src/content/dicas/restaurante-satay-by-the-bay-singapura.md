@@ -7,6 +7,9 @@ pais: "Singapura"
 cidade: "Singapura"
 tags:
   - "street-food"
+  - "singapura"
+  - "asiatico"
+  - "espetinho"
 info:
   endereco: "18 Marina Gardens Drive, Gardens by the Bay, Singapura"
   instagram: "@sataybythebayofficial"

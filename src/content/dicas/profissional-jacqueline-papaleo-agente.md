@@ -5,7 +5,10 @@ categoria: "Viagens"
 subcategoria: "Agência"
 pais: "Brasil"
 tags:
-  - "agencia"
+  - "brasil"
+  - "roteiro"
+  - "planejamento"
+  - "turismo"
 info:
   nome_profissional: "Jacqueline Papaléo"
   especialidade: "Agente de turismo"

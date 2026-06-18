@@ -7,9 +7,9 @@ pais: "Estados Unidos"
 cidade: "Nova York"
 tags:
   - "nova-york"
-  - "restaurantes"
+  - "restaurante"
   - "bar"
-  - "bares"
+  - "estados-unidos"
 info:
   indicado_por: "Isa Rezende"
 publicado_em: 2026-04-28

@@ -9,6 +9,7 @@ tags:
   - "hong-kong"
   - "chines"
   - "tsim-sha-tsui"
+  - "china"
 info:
   endereco: "18/F, H Zentre, 15 Middle Road, Tsim Sha Tsui, Hong Kong"
   bairro: "Tsim Sha Tsui"

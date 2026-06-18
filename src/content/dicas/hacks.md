@@ -3,8 +3,9 @@ titulo: "Hacks"
 categoria: "Content+"
 subcategoria: "Série"
 tags:
-  - "Série"
-  - "Comédia"
+  - "comedia"
+  - "max"
+  - "serie"
 info:
   plataforma: "Max"
   indicado_por: "Larissa Arruy"

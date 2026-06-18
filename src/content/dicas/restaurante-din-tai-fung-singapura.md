@@ -7,6 +7,9 @@ pais: "Singapura"
 cidade: "Singapura"
 tags:
   - "chines"
+  - "singapura"
+  - "dumpling"
+  - "dim-sum"
 info:
   site: "dintaifung.com.sg"
   instagram: "@dintaifungsg"

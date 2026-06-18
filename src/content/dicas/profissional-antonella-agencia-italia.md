@@ -6,7 +6,8 @@ subcategoria: "Agência"
 pais: "Itália"
 tags:
   - "italia"
-  - "agencia"
+  - "roteiro"
+  - "planejamento"
 info:
   nome_profissional: "Antonella Giancoli (agência Benarrivati)"
   especialidade: "Agência de viagens na Itália"

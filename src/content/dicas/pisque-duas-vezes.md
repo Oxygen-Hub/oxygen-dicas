@@ -3,8 +3,9 @@ titulo: "Pisque Duas Vezes"
 categoria: "Content+"
 subcategoria: "Filme"
 tags:
-  - "Filme"
-  - "Suspense"
+  - "suspense"
+  - "thriller"
+  - "zoe-kravitz"
 info:
   indicado_por: "Analídia Ferri"
 publicado_em: 2026-06-15

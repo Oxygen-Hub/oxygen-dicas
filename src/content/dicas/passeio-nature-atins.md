@@ -7,6 +7,10 @@ pais: "Brasil"
 tags:
   - "natureza"
   - "praia"
+  - "brasil"
+  - "transfer"
+  - "passeio"
+  - "lencois-maranhenses"
 info:
   instagram: "natureatins"
   indicado_por: "Paula Moreira"

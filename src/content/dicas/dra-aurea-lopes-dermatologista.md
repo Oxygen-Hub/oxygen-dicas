@@ -3,8 +3,10 @@ titulo: "Dra. Aurea Lopes — Dermatologista"
 categoria: "Gerais"
 subcategoria: "Saúde"
 tags:
-  - "Saúde"
-  - "Dermatologia"
+  - "dermatologia"
+  - "dermatologista"
+  - "natural"
+  - "sao-paulo"
 info:
   nome_profissional: "Dra. Aurea Lopes"
   especialidade: "Dermatologia (resultado natural)"

@@ -3,9 +3,10 @@ titulo: "NordVPN — Serviço de VPN"
 categoria: "Gerais"
 subcategoria: "Compras"
 tags:
-  - "Compras"
-  - "Tecnologia"
-  - "VPN"
+  - "tecnologia"
+  - "vpn"
+  - "seguranca"
+  - "internet"
 info:
   nome_profissional: "NordVPN"
   especialidade: "VPN (desktop e celular)"

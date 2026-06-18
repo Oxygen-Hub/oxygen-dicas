@@ -3,9 +3,10 @@ titulo: "Planservice — Serviços e facilities"
 categoria: "Gerais"
 subcategoria: "Casa"
 tags:
-  - "Casa"
-  - "Serviços"
-  - "Facilities"
+  - "servicos"
+  - "facilities"
+  - "limpeza"
+  - "empresa"
 info:
   nome_profissional: "Planservice"
   especialidade: "Serviços / facilities"

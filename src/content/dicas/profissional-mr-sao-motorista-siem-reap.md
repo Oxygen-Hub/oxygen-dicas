@@ -8,6 +8,9 @@ cidade: "Siem Reap"
 tags:
   - "camboja"
   - "motorista"
+  - "siem-reap"
+  - "transfer"
+  - "angkor"
 info:
   nome_profissional: "Mr. Sao"
   especialidade: "Motorista / taxi em Siem Reap"

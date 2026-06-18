@@ -8,6 +8,8 @@ cidade: "Nova York"
 tags:
   - "nova-york"
   - "cultura"
+  - "estados-unidos"
+  - "programas"
 info:
   indicado_por: "Luiza Secco"
 publicado_em: 2026-04-28

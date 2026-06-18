@@ -8,6 +8,8 @@ cidade: "Roma"
 tags:
   - "roma"
   - "motorista"
+  - "italia"
+  - "transfer"
 info:
   nome_profissional: "Daniele Manciano"
   especialidade: "Motorista em Roma"

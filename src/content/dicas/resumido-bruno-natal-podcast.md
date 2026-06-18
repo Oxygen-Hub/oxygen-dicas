@@ -3,8 +3,9 @@ titulo: "Resumido — Bruno Natal (podcast)"
 categoria: "Content+"
 subcategoria: "Podcast"
 tags:
-  - "Podcast"
-  - "Marketing"
+  - "marketing"
+  - "negocios"
+  - "tecnologia"
 info:
   indicado_por: "Angela Giacobbe"
 publicado_em: 2026-06-15

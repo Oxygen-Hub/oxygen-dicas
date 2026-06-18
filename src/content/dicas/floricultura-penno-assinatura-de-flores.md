@@ -3,9 +3,9 @@ titulo: "Floricultura Penno — Assinatura de flores"
 categoria: "Gerais"
 subcategoria: "Casa"
 tags:
-  - "Casa"
-  - "Flores"
-  - "Assinatura"
+  - "flores"
+  - "assinatura"
+  - "decoracao"
 info:
   nome_profissional: "Renata Penno (Floricultura Penno)"
   especialidade: "Assinatura mensal de flores"

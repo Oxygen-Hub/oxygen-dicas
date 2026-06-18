@@ -7,7 +7,9 @@ pais: "Itália"
 cidade: "Florença"
 tags:
   - "florenca"
-  - "guia"
+  - "italia"
+  - "historia"
+  - "arte"
 info:
   nome_profissional: "Barbara Bandinelli"
   especialidade: "Guia em Florença"

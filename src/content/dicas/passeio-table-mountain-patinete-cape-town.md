@@ -10,6 +10,7 @@ tags:
   - "table-mountain"
   - "aventura"
   - "familia"
+  - "africa-do-sul"
 info:
   indicado_por: "Stefania Granito"
 publicado_em: 2026-05-28
