@@ -25,6 +25,15 @@ const base = import.meta.env.BASE_URL;
   <script is:inline define:vars={{ base }}>
     let dicasCache = null;
 
+    // Remove acentos e põe em minúsculo, pra busca não depender de acento.
+    // "café", "Café", "cafe" e "CAFÉ" viram todos "cafe".
+    function normalizar(s) {
+      return String(s)
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    }
+
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
@@ -58,7 +67,7 @@ const base = import.meta.env.BASE_URL;
     }
 
     async function buscar(termo) {
-      const t = termo.toLowerCase().trim();
+      const t = normalizar(termo.trim());
       const titulo = document.getElementById('titulo-busca');
       const contador = document.getElementById('contador-busca');
       const wrap = document.getElementById('resultados-wrap');
@@ -76,10 +85,10 @@ const base = import.meta.env.BASE_URL;
       const dicas = await carregarDicas();
 
       const resultados = dicas.filter(d => {
-        const texto = [
+        const texto = normalizar([
           d.titulo, d.subtitulo, d.categoria, d.subcategoria,
           d.subtag, d.pais, d.cidade, ...(d.tags || [])
-        ].join(' ').toLowerCase();
+        ].join(' '));
         return texto.includes(t);
       });
 
