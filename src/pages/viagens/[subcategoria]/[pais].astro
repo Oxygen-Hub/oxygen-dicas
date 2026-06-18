@@ -6,7 +6,7 @@ import BotaoVoltar from '../../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../../utils/helpers';
 export async function getStaticPaths() {
   const dicas = await getCollection('dicas');
-  const subs = ['Passeios', 'Lojas', 'Restaurantes', 'Hospedagem', 'Roteiro', 'Destino', 'Bares e cafés', 'Guia', 'Agência', 'Outros'];
+  const subs = ['Passeios', 'Lojas', 'Restaurantes, bares e cafés', 'Hospedagem', 'Roteiro', 'Guia', 'Agência', 'Outros'];
   const paths: any[] = [];
   for (const sub of subs) {
     const paisesSet = new Set<string>();
