@@ -14,7 +14,8 @@ export async function getStaticPaths() {
 const { dica } = Astro.props;
 const { Content } = await dica.render();
 const d = dica.data;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
   day: 'numeric',
   month: 'long',
@@ -31,7 +32,7 @@ const subLink = `${base}/${catSlug}/${subSlug}`;
     <BotaoVoltar fallbackHref={subLink} label={d.subcategoria} />
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-      <a href={base}>
+      <a href={home}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="19" y1="12" x2="5" y2="12"/>
           <polyline points="12 19 5 12 12 5"/>

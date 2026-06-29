@@ -23,7 +23,8 @@ export async function getStaticPaths() {
   return paths;
 }
 const { subcategoria, pais } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 const dicas = (await getCollection('dicas'))
   .filter(d =>
     d.data.categoria === 'Gerais' &&
@@ -43,7 +44,7 @@ const cidades = Array.from(cidadesSet).sort().map(c => ({
   <div class="container">
     <BotaoVoltar fallbackHref={`${base}/gerais/${slugify(subcategoria)}`} label={subcategoria} />
     <nav class="breadcrumb" style="padding-top: 12px;">
-      <a href={base}>Início</a>
+      <a href={home}>Início</a>
       <span class="breadcrumb-sep">/</span>
       <a href={`${base}/gerais`}>Gerais</a>
       <span class="breadcrumb-sep">/</span>

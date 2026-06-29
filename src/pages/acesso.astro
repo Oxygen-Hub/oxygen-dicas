@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Home do site respeitando a base. Na raiz BASE_URL é '/', então home é '/'.
+const home = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
+// URL do endpoint que valida o email contra a base de membros do Oxygen Club.
+// Configure a variável de ambiente PUBLIC_ACCESS_API no build (ex.: GitHub Pages)
+// apontando para o endpoint de produção do oxygen-admin. Veja .env.example e o
+// README. Se PUBLIC_ACCESS_API não estiver configurada no build, cai no padrão
+// de produção abaixo (admin.oxygenhub.com.br).
+const accessApi =
+  import.meta.env.PUBLIC_ACCESS_API ||
+  'https://admin.oxygenhub.com.br/api/dicas-access';
+---
+<Layout titulo="Acesso" descricao="Conteúdo exclusivo para membros do Oxygen Club. Informe seu email para acessar as dicas da comunidade.">
+  <div class="container">
+    <section class="acesso">
+      <div class="preambulo-eyebrow">Acesso · Oxygen Club</div>
+      <h1 class="preambulo-titulo">Conteúdo exclusivo para membros</h1>
+      <p class="preambulo-texto">
+        Esse conteúdo é exclusivo para membros do Oxygen Club. Informe seu email para acessar.
+      </p>
+
+      <form class="acesso-form" id="acesso-form" novalidate>
+        <label class="acesso-field" for="acesso-email">
+          <input
+            id="acesso-email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="seu@email.com"
+            required
+          />
+        </label>
+        <button class="acesso-btn" type="submit" id="acesso-submit">Acessar</button>
+      </form>
+
+      <p class="acesso-msg" id="acesso-msg" role="status" aria-live="polite" hidden></p>
+    </section>
+  </div>
+
+  <script is:inline define:vars={{ home, accessApi }}>
+    const form = document.getElementById('acesso-form');
+    const input = document.getElementById('acesso-email');
+    const btn = document.getElementById('acesso-submit');
+    const msg = document.getElementById('acesso-msg');
+
+    function mostrarMensagem(texto, tipo) {
+      msg.textContent = texto;
+      msg.className = 'acesso-msg' + (tipo ? ' acesso-msg-' + tipo : '');
+      msg.hidden = false;
+    }
+
+    function limparMensagem() {
+      msg.hidden = true;
+      msg.textContent = '';
+    }
+
+    function setCarregando(carregando) {
+      btn.disabled = carregando;
+      input.disabled = carregando;
+      btn.textContent = carregando ? 'Verificando...' : 'Acessar';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      limparMensagem();
+
+      const email = String(input.value || '').trim().toLowerCase();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        mostrarMensagem('Digite um email válido.', 'erro');
+        return;
+      }
+
+      setCarregando(true);
+
+      try {
+        const res = await fetch(accessApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        if (!res.ok) throw new Error('resposta não OK');
+
+        const data = await res.json();
+
+        if (data && data.eligible === true) {
+          localStorage.setItem('oxygenDicasAccess', '1');
+          localStorage.setItem('oxygenDicasEmail', email);
+          // Redireciona pra home do site (na raiz é '/').
+          window.location.href = home;
+          return;
+        }
+
+        mostrarMensagem(
+          'Não encontramos esse email na nossa base de membros. Verifique ou fale com a gente.',
+          'erro'
+        );
+        setCarregando(false);
+      } catch (err) {
+        console.error('Erro ao validar acesso:', err);
+        mostrarMensagem(
+          'Não conseguimos verificar seu acesso agora. Tente novamente em instantes.',
+          'erro'
+        );
+        setCarregando(false);
+      }
+    });
+  </script>
+</Layout>
+
+<style>
+  .acesso {
+    text-align: center;
+    padding: 80px 24px 60px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .acesso .preambulo-texto {
+    margin-bottom: 36px;
+  }
+
+  .acesso-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .acesso-field {
+    display: flex;
+    align-items: center;
+    background: var(--oxy-white);
+    border: 0.5px solid var(--oxy-border);
+    border-radius: 24px;
+    padding: 12px 20px;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+    cursor: text;
+  }
+
+  .acesso-field:hover { border-color: rgba(42, 42, 42, 0.2); }
+
+  .acesso-field:focus-within {
+    border-color: var(--oxy-orange);
+    box-shadow: 0 0 0 3px var(--oxy-orange-faint);
+  }
+
+  .acesso-field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--oxy-ink);
+    min-width: 0;
+    text-align: center;
+  }
+
+  .acesso-field input::placeholder { color: var(--oxy-ink-faint); }
+
+  .acesso-btn {
+    background: var(--oxy-orange);
+    color: var(--oxy-white);
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background var(--t-fast), opacity var(--t-fast);
+  }
+
+  .acesso-btn:hover { background: var(--oxy-orange-dark); }
+
+  .acesso-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .acesso-msg {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--oxy-ink-soft);
+    line-height: 1.6;
+  }
+
+  .acesso-msg-erro { color: var(--oxy-orange-dark); }
+
+  @media (max-width: 640px) {
+    .acesso { padding: 50px 24px 40px; }
+  }
+</style>

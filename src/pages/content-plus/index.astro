@@ -4,7 +4,8 @@ import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
 import BotaoVoltar from '../../components/BotaoVoltar.astro';
 import { slugify, metaDoCard } from '../../utils/helpers';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 const dicas = (await getCollection('dicas'))
   .filter(d => d.data.categoria === 'Content+')
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());
