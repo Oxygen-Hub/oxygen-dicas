@@ -23,7 +23,8 @@ export async function getStaticPaths() {
   return paths;
 }
 const { subcategoria, subtag } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 const dicas = (await getCollection('dicas'))
   .filter(d =>
     d.data.categoria === 'Content+' &&
@@ -36,7 +37,7 @@ const dicas = (await getCollection('dicas'))
   <div class="container">
     <BotaoVoltar fallbackHref={`${base}/content-plus/${slugify(subcategoria)}`} label={subcategoria} />
     <nav class="breadcrumb" style="padding-top: 12px;">
-      <a href={base}>Início</a>
+      <a href={home}>Início</a>
       <span class="breadcrumb-sep">/</span>
       <a href={`${base}/content-plus`}>Content+</a>
       <span class="breadcrumb-sep">/</span>

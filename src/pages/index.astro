@@ -5,7 +5,8 @@ import Preambulo from '../components/Preambulo.astro';
 import Card from '../components/Card.astro';
 import { metaDoCard } from '../utils/helpers';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 
 const dicas = (await getCollection('dicas'))
   .sort((a, b) => b.data.publicado_em.valueOf() - a.data.publicado_em.valueOf());

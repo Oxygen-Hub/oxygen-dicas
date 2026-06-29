@@ -4,7 +4,10 @@ interface Props {
   base: string;
 }
 
-const { ativo = 'Todas', base } = Astro.props;
+const { ativo = 'Todas', base: baseProp } = Astro.props;
+// Normaliza a base removendo a barra final, pra juntar caminhos sem barra dupla.
+const base = baseProp.replace(/\/$/, '');
+const home = base || '/';
 
 const categorias = [
   { nome: 'Todas', slug: '' },
@@ -15,7 +18,7 @@ const categorias = [
 ---
 <div class="filtros">
   {categorias.map(cat => {
-    const href = cat.slug === '' ? base : `${base}/${cat.slug}`;
+    const href = cat.slug === '' ? home : `${base}/${cat.slug}`;
     const isActive = cat.nome === ativo;
     return (
       <a href={href} class={`filtro ${isActive ? 'is-active' : ''}`}>

@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://oxygen-hub.github.io',
-  base: '/oxygen-dicas',
+  site: 'https://dicas.oxygenhub.com.br',
+  base: '/',
   output: 'static',
   trailingSlash: 'ignore',
   build: {
